@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ldml>
+	<identity>
+		<version
+			number="" />
+		<generation
+			date="2016-03-30T06:22:36" />
+		<language
+			type="th" />
+	</identity>
+	<collations>
+		<collation>
+			<base>
+				<alias
+					source="th" />
+			</base>
+			<special
+				xmlns:palaso="urn://palaso.org/ldmlExtensions/v1">
+				<palaso:sortRulesType
+					value="OtherLanguage" />
+			</special>
+		</collation>
+	</collations>
+	<special
+		xmlns:palaso="urn://palaso.org/ldmlExtensions/v1">
+		<palaso:abbreviation
+			value="th" />
+		<palaso:defaultFontFamily
+			value="Charis SIL" />
+		<palaso:languageName
+			value="Thai" />
+		<palaso:spellCheckingId
+			value="th" />
+		<palaso:version
+			value="2" />
+	</special>
+	<special
+		xmlns:fw="urn://fieldworks.sil.org/ldmlExtensions/v1">
+		<fw:graphiteEnabled
+			value="False" />
+		<fw:validChars
+			value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;
+&lt;ValidCharacters&gt;
+  &lt;WordForming&gt;‍￼་￼‌￼༌￼'￼-￼Ꞌ￼ꞌ￼⁰￼¹￼²￼³￼⁴￼⁵￼⁶￼⁷￼⁸￼⁹&lt;/WordForming&gt;
+  &lt;Numeric /&gt;
+  &lt;Other /&gt;
+&lt;/ValidCharacters&gt;" />
+	</special>
+</ldml>

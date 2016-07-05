@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<notes
+	version="0">
+	<annotation
+		class="mergeConflict"
+		ref="silfw://localhost/link?app=flex&amp;database=current&amp;server=&amp;tool=default&amp;guid=4e483f12-aa5f-49ca-acf3-d0ef1d56f0b2&amp;tag=&amp;label=Entry &quot;hirt&quot; Senses 1 Gloss"
+		guid="22317d5e-db5d-4049-a78d-dbeb353a7697">
+		<message
+			author="merger"
+			status="open"
+			guid="432d1429-9009-4fef-9ad4-8ac9535c3b9d"
+			date="2016-04-21T03:55:02Z">Entry "hirt" Senses 1 Gloss: chris and Darcy edited this element.<![CDATA[<conflict
+	typeGuid="c1ed6dbe-e382-11de-8a39-0800200c9a66"
+	class="Chorus.merge.xml.generic.XmlTextBothEditedTextConflict"
+	relativeFilePath="Linguistics\Lexicon\Lexicon_02.lexdb"
+	type="Both Edited Xml Text Element Conflict"
+	guid="432d1429-9009-4fef-9ad4-8ac9535c3b9d"
+	date="2016-04-21T03:55:02Z"
+	whoWon="chris"
+	htmlDetails="&lt;head&gt;&lt;style type='text/css'&gt;div.alternative {margin-left:  0.25in} div.ws {margin-left:  0.25in} div.property {margin-left:  0.25in} div.checksum {margin-left:  0.25in}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div class='description'&gt;Entry &quot;hirt&quot; Senses 1 Gloss: chris and Darcy edited this element.&lt;/div&gt;&lt;div class='alternative'&gt;chris's changes: &lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: &lt;span style=&quot;text-decoration: line-through; color: red&quot;&gt;chris&lt;/span&gt;&lt;span style=&quot;background: Yellow&quot;&gt;christ&lt;/span&gt;&lt;/div&gt;&lt;div class='alternative'&gt;Darcy's changes: &lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: &lt;span style=&quot;text-decoration: line-through; color: red&quot;&gt;chris&lt;/span&gt;&lt;span style=&quot;background: Yellow&quot;&gt;christopher&lt;/span&gt;&lt;/div&gt;&lt;div class='mergechoice'&gt;The merger kept the change made by chris.&lt;/div&gt;&lt;/body&gt;"
+	contextPath="silfw://localhost/link?app=flex&amp;database=current&amp;server=&amp;tool=default&amp;guid=4e483f12-aa5f-49ca-acf3-d0ef1d56f0b2&amp;tag=&amp;label=Entry &quot;hirt&quot; Senses 1 Gloss"
+	contextDataLabel="Entry &quot;hirt&quot; Senses 1 Gloss">
+	<MergeSituation
+		alphaUserId="chris"
+		betaUserId="Darcy"
+		alphaUserRevision="5e7e6177058c"
+		betaUserRevision="e03dd0542232"
+		path="Linguistics\Lexicon\Lexicon_02.lexdb"
+		conflictHandlingMode="WeWin" />
+</conflict>]]></message>
+		<message
+			author="chris"
+			status="closed"
+			date="2016-04-21T10:55:58Z"
+			guid="5ae92e88-fb0c-4a2f-b854-037562777502" />
+		<message
+			author="Darcy"
+			status="closed"
+			date="2016-04-21T10:57:17Z"
+			guid="8417bcd3-06b3-4928-971c-5d3f7ee70258" />
+	</annotation>
+	<annotation
+		class="mergeConflict"
+		ref="silfw://localhost/link?app=flex&amp;database=current&amp;server=&amp;tool=default&amp;guid=8dbda263-7de5-4ce7-8778-f056f5576400&amp;tag=&amp;label=Entry &quot;hirt&quot;"
+		guid="79cb6717-efab-4a7f-bd2e-69e9eb16643b">
+		<message
+			author="merger"
+			status="open"
+			guid="56d76b99-0833-4680-91b8-bd157a431c0c"
+			date="2016-04-21T04:09:42Z">Entry "hirt": chris deleted this element, while Darcy edited it. The merger kept the change made by Darcy.<![CDATA[<conflict
+	typeGuid="3d9ba4ac-4a25-11df-9879-0800200c9a66"
+	class="Chorus.merge.xml.generic.EditedVsRemovedElementConflict"
+	relativeFilePath="Linguistics\Lexicon\Lexicon_02.lexdb"
+	type="Removed Vs Edited Element Conflict"
+	guid="56d76b99-0833-4680-91b8-bd157a431c0c"
+	date="2016-04-21T04:09:42Z"
+	whoWon="Darcy"
+	htmlDetails="&lt;head&gt;&lt;style type='text/css'&gt;div.alternative {margin-left:  0.25in} div.ws {margin-left:  0.25in} div.property {margin-left:  0.25in} div.checksum {margin-left:  0.25in}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div class='description'&gt;Entry &quot;hirt&quot;: chris deleted this element, while Darcy edited it. The merger kept the change made by Darcy.&lt;/div&gt;&lt;div class='alternative'&gt;Darcy's changes: &lt;div class='property'&gt;Custom: 0&lt;/div&gt;&lt;div class='property'&gt;Custom: 0&lt;/div&gt;&lt;div class='property'&gt;DateCreated: 2016-4-21 3:33:51.502&lt;/div&gt;&lt;div class='property'&gt;DateModified: 2016-4-21 &lt;span style=&quot;text-decoration: line-through; color: red&quot;&gt;3:53:13.88&lt;/span&gt;&lt;span style=&quot;background: Yellow&quot;&gt;4:8:6.194&lt;/span&gt;&lt;/div&gt;&lt;div class='property'&gt;DoNotUseForParsing: False&lt;/div&gt;&lt;div class='property'&gt;HomographNumber: 0&lt;/div&gt;&lt;div class='property'&gt;LexemeForm: &lt;div class='property'&gt;Form: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;qaa-x-kal&lt;/span&gt;: hirt&lt;/div&gt;&lt;/div&gt;&lt;div class='property'&gt;IsAbstract: False&lt;/div&gt;&lt;div class='checksum'&gt;MorphType: 8vuxP9oD+4MHboh6iDetvb5NpRY=&lt;/div&gt;&lt;/div&gt;&lt;div class='property'&gt;MorphoSyntaxAnalyses: &lt;div class='checksum'&gt;PartOfSpeech: DVpnXDTWg6+1pjvBPfjg88zgKCc=&lt;/div&gt;&lt;/div&gt;&lt;div class='property'&gt;Senses: &lt;div class='property'&gt;Gloss: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: &lt;span style=&quot;background: Yellow&quot;&gt;peace&lt;/span&gt; &lt;span style=&quot;background: Yellow&quot;&gt;of&lt;/span&gt; christ&lt;/div&gt;&lt;/div&gt;&lt;div class='checksum'&gt;MorphoSyntaxAnalysis: DhQbvspzrmlVelqpn5NAfnRrTdY=&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='mergechoice'&gt;The merger kept the change made by Darcy.&lt;/div&gt;&lt;/body&gt;"
+	contextPath="silfw://localhost/link?app=flex&amp;database=current&amp;server=&amp;tool=default&amp;guid=8dbda263-7de5-4ce7-8778-f056f5576400&amp;tag=&amp;label=Entry &quot;hirt&quot;"
+	contextDataLabel="Entry &quot;hirt&quot;">
+	<MergeSituation
+		alphaUserId="Darcy"
+		betaUserId="chris"
+		alphaUserRevision="8821624d1f54"
+		betaUserRevision="ee5f51106776"
+		path="Linguistics\Lexicon\Lexicon_02.lexdb"
+		conflictHandlingMode="WeWin" />
+</conflict>]]></message>
+		<message
+			author="ira"
+			status="closed"
+			date="2016-04-26T09:53:32Z"
+			guid="530e25cc-f917-415e-83af-0efd13453630" />
+		<message
+			author="Darcy"
+			status="closed"
+			date="2016-04-21T11:10:31Z"
+			guid="eb312894-c9d8-4d33-ae52-dc37cae00b7e" />
+	</annotation>
+</notes>

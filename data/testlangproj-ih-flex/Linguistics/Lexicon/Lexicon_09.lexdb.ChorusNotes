@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<notes
+	version="0">
+	<annotation
+		class="mergeConflict"
+		ref="silfw://localhost/link?app=flex&amp;database=current&amp;server=&amp;tool=default&amp;guid=df2d8269-ef25-42c9-b85d-23b794096d76&amp;tag=&amp;label=Entry &quot;iŋ&quot; Senses 1 Gloss"
+		guid="7d712ede-c7fb-4513-98a4-321773c06f24">
+		<message
+			author="merger"
+			status="open"
+			guid="92fab371-2719-4540-b38c-53ef457b01ca"
+			date="2016-04-21T03:59:18Z">Entry "iŋ" Senses 1 Gloss: Darcy and chris edited this element.<![CDATA[<conflict
+	typeGuid="c1ed6dbe-e382-11de-8a39-0800200c9a66"
+	class="Chorus.merge.xml.generic.XmlTextBothEditedTextConflict"
+	relativeFilePath="Linguistics\Lexicon\Lexicon_09.lexdb"
+	type="Both Edited Xml Text Element Conflict"
+	guid="92fab371-2719-4540-b38c-53ef457b01ca"
+	date="2016-04-21T03:59:18Z"
+	whoWon="Darcy"
+	htmlDetails="&lt;head&gt;&lt;style type='text/css'&gt;div.alternative {margin-left:  0.25in} div.ws {margin-left:  0.25in} div.property {margin-left:  0.25in} div.checksum {margin-left:  0.25in}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div class='description'&gt;Entry &quot;iŋ&quot; Senses 1 Gloss: Darcy and chris edited this element.&lt;/div&gt;&lt;div class='alternative'&gt;Darcy's changes: &lt;div&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: water &lt;span style=&quot;background: Yellow&quot;&gt;darcy&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span class=&quot;ws&quot;&gt;es&lt;/span&gt;: agua&lt;/div&gt;&lt;/div&gt;&lt;div class='alternative'&gt;chris's changes: &lt;div&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: water &lt;span style=&quot;background: Yellow&quot;&gt;-&lt;/span&gt; &lt;span style=&quot;background: Yellow&quot;&gt;chris&lt;/span&gt; &lt;span style=&quot;background: Yellow&quot;&gt;here&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span class=&quot;ws&quot;&gt;es&lt;/span&gt;: agua&lt;/div&gt;&lt;/div&gt;&lt;div class='mergechoice'&gt;The merger kept the change made by Darcy.&lt;/div&gt;&lt;/body&gt;"
+	contextPath="silfw://localhost/link?app=flex&amp;database=current&amp;server=&amp;tool=default&amp;guid=df2d8269-ef25-42c9-b85d-23b794096d76&amp;tag=&amp;label=Entry &quot;iŋ&quot; Senses 1 Gloss"
+	contextDataLabel="Entry &quot;iŋ&quot; Senses 1 Gloss">
+	<MergeSituation
+		alphaUserId="Darcy"
+		betaUserId="chris"
+		alphaUserRevision="6cba38e7b5c7"
+		betaUserRevision="5b6c23870da8"
+		path="Linguistics\Lexicon\Lexicon_09.lexdb"
+		conflictHandlingMode="WeWin" />
+</conflict>]]></message>
+		<message
+			author="chris"
+			status="closed"
+			date="2016-04-21T11:01:49Z"
+			guid="141101a8-fcd6-4880-806b-32c3f2f5ffab" />
+		<message
+			author="Darcy"
+			status="closed"
+			date="2016-04-21T10:59:56Z"
+			guid="dca04169-4dc1-4159-82f8-c2d3ee8906fb" />
+	</annotation>
+	<annotation
+		class="mergeConflict"
+		ref="silfw://localhost/link?app=flex&amp;database=current&amp;server=&amp;tool=default&amp;guid=82d6bc2e-768e-4ec4-95b8-2cff376208c4&amp;tag=&amp;label=Entry &quot;iŋ&quot;"
+		guid="bb2efcde-3342-4379-baad-da1455bfca45">
+		<message
+			author="merger"
+			status="open"
+			guid="a2cef52e-48f3-4169-bf9d-5930bf6cafb9"
+			date="2016-04-21T04:03:04Z">Entry "iŋ": Darcy deleted this element, while chris edited it. The merger kept the change made by chris.<![CDATA[<conflict
+	typeGuid="56F9C347-C4FA-48F4-8028-729F3CFF48EF"
+	class="Chorus.merge.xml.generic.RemovedVsEditedElementConflict"
+	relativeFilePath="Linguistics\Lexicon\Lexicon_09.lexdb"
+	type="Removed Vs Edited Element Conflict"
+	guid="a2cef52e-48f3-4169-bf9d-5930bf6cafb9"
+	date="2016-04-21T04:03:04Z"
+	whoWon="chris"
+	htmlDetails="&lt;head&gt;&lt;style type='text/css'&gt;div.alternative {margin-left:  0.25in} div.ws {margin-left:  0.25in} div.property {margin-left:  0.25in} div.checksum {margin-left:  0.25in}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div class='description'&gt;Entry &quot;iŋ&quot;: Darcy deleted this element, while chris edited it. The merger kept the change made by chris.&lt;/div&gt;&lt;div class='alternative'&gt;chris's changes: &lt;div class='property'&gt;Custom: 0&lt;/div&gt;&lt;div class='property'&gt;Custom: 0&lt;/div&gt;&lt;div class='property'&gt;DateCreated: 2016-4-18 3:20:16.327&lt;/div&gt;&lt;div class='property'&gt;DateModified: 2016-4-21 &lt;span style=&quot;text-decoration: line-through; color: red&quot;&gt;3:58:21.95&lt;/span&gt;&lt;span style=&quot;background: Yellow&quot;&gt;4:2:4.596&lt;/span&gt;&lt;/div&gt;&lt;div class='property'&gt;DoNotUseForParsing: False&lt;/div&gt;&lt;div class='property'&gt;HomographNumber: 0&lt;/div&gt;&lt;div class='property'&gt;LexemeForm: &lt;div class='property'&gt;Form: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;qaa-fonipa-x-kal&lt;/span&gt;: iŋ&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;qaa-x-kal&lt;/span&gt;: &lt;span style=&quot;text-decoration: line-through; color: red&quot;&gt;iŋ&lt;/span&gt;&lt;span style=&quot;background: Yellow&quot;&gt;tooiŋ&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='property'&gt;IsAbstract: False&lt;/div&gt;&lt;div class='checksum'&gt;MorphType: kS/ElSksI6a6Nlqpw6+EysVfD8o=&lt;/div&gt;&lt;/div&gt;&lt;div class='property'&gt;MorphoSyntaxAnalyses: &lt;div class='checksum'&gt;InflectionClass: g/9+PMmZL4yriwixmGqJm4WQqT0=&lt;/div&gt;&lt;div class='checksum'&gt;PartOfSpeech: DVpnXDTWg6+1pjvBPfjg88zgKCc=&lt;/div&gt;&lt;/div&gt;&lt;div class='property'&gt;Senses: &lt;div class='checksum'&gt;DoNotPublishIn: YLHbGFtFRA7M3FZEb51A2/25ylM=&lt;/div&gt;&lt;div class='property'&gt;Gloss: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: water darcy &lt;span style=&quot;background: Yellow&quot;&gt;-&lt;/span&gt; &lt;span style=&quot;background: Yellow&quot;&gt;chris&lt;/span&gt; &lt;span style=&quot;background: Yellow&quot;&gt;too&lt;/span&gt;&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;es&lt;/span&gt;: agua&lt;/div&gt;&lt;/div&gt;&lt;div class='checksum'&gt;MorphoSyntaxAnalysis: 6H95Pag9qB38Lq3l1W37fhm9F0c=&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='mergechoice'&gt;The merger kept the change made by chris.&lt;/div&gt;&lt;/body&gt;"
+	contextPath="silfw://localhost/link?app=flex&amp;database=current&amp;server=&amp;tool=default&amp;guid=82d6bc2e-768e-4ec4-95b8-2cff376208c4&amp;tag=&amp;label=Entry &quot;iŋ&quot;"
+	contextDataLabel="Entry &quot;iŋ&quot;">
+	<MergeSituation
+		alphaUserId="Darcy"
+		betaUserId="chris"
+		alphaUserRevision="1c1fadd2ad5b"
+		betaUserRevision="47bb90503a0c"
+		path="Linguistics\Lexicon\Lexicon_09.lexdb"
+		conflictHandlingMode="WeWin" />
+</conflict>]]></message>
+		<message
+			author="chris"
+			status="closed"
+			date="2016-04-21T11:08:50Z"
+			guid="c16de852-147b-4ae8-bcec-627d5dc92eba" />
+		<message
+			author="Darcy"
+			status="closed"
+			date="2016-04-21T11:03:58Z"
+			guid="de6c3290-55dc-47df-8562-6c56e33a5ec0" />
+	</annotation>
+</notes>

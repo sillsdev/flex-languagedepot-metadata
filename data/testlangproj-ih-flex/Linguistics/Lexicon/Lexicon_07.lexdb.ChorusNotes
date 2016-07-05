@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<notes
+	version="0">
+	<annotation
+		class="mergeConflict"
+		ref="silfw://localhost/link?app=flex&amp;database=current&amp;server=&amp;tool=default&amp;guid=ab26e00c-9750-4908-bf5b-657adf0acc40&amp;tag=&amp;label=Entry &quot;zitʰɛstmen (chris was here)&quot; Senses 1 Gloss"
+		guid="d705faf8-445e-47c6-a04f-eb953c58cd37">
+		<message
+			author="merger"
+			status="open"
+			guid="ee786218-76ee-4b8f-9749-741568c7fc6a"
+			date="2016-03-31T04:16:11Z">Entry "zitʰɛstmen (chris was here)" Senses 1 Gloss: www-data and ira edited this element.<![CDATA[<conflict
+	typeGuid="c1ed6dbe-e382-11de-8a39-0800200c9a66"
+	class="Chorus.merge.xml.generic.XmlTextBothEditedTextConflict"
+	relativeFilePath="Linguistics/Lexicon/Lexicon_07.lexdb"
+	type="Both Edited Xml Text Element Conflict"
+	guid="ee786218-76ee-4b8f-9749-741568c7fc6a"
+	date="2016-03-31T04:16:11Z"
+	whoWon="www-data"
+	htmlDetails="&lt;head&gt;&lt;style type='text/css'&gt;div.alternative {margin-left:  0.25in} div.ws {margin-left:  0.25in} div.property {margin-left:  0.25in} div.checksum {margin-left:  0.25in}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div class='description'&gt;Entry &quot;zitʰɛstmen (chris was here)&quot; Senses 1 Gloss: www-data and ira edited this element.&lt;/div&gt;&lt;div class='alternative'&gt;www-data's changes: &lt;div&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: English gloss&lt;span style=&quot;text-decoration: line-through; color: red&quot;&gt;-&lt;/span&gt; &lt;span style=&quot;text-decoration: line-through; color: red&quot;&gt;changed&lt;/span&gt; &lt;span style=&quot;text-decoration: line-through; color: red&quot;&gt;in&lt;/span&gt; &lt;span style=&quot;text-decoration: line-through; color: red&quot;&gt;FLEx&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: French gloss&lt;/div&gt;&lt;/div&gt;&lt;div class='alternative'&gt;ira's changes: &lt;div&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: English gloss - changed in FLEx&lt;span style=&quot;background: Yellow&quot;&gt;,&lt;/span&gt; &lt;span style=&quot;background: Yellow&quot;&gt;after&lt;/span&gt; &lt;span style=&quot;background: Yellow&quot;&gt;Chris&lt;/span&gt; &lt;span style=&quot;background: Yellow&quot;&gt;mod&lt;/span&gt; &lt;span style=&quot;background: Yellow&quot;&gt;lexeme&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: French gloss&lt;/div&gt;&lt;/div&gt;&lt;div class='mergechoice'&gt;The merger kept the change made by www-data.&lt;/div&gt;&lt;/body&gt;"
+	contextPath="silfw://localhost/link?app=flex&amp;database=current&amp;server=&amp;tool=default&amp;guid=ab26e00c-9750-4908-bf5b-657adf0acc40&amp;tag=&amp;label=Entry &quot;zitʰɛstmen (chris was here)&quot; Senses 1 Gloss"
+	contextDataLabel="Entry &quot;zitʰɛstmen (chris was here)&quot; Senses 1 Gloss">
+	<MergeSituation
+		alphaUserId="www-data"
+		betaUserId="ira"
+		alphaUserRevision="e47d92f2050c"
+		betaUserRevision="a1b317382586"
+		path="Linguistics/Lexicon/Lexicon_07.lexdb"
+		conflictHandlingMode="WeWin" />
+</conflict>]]></message>
+		<message
+			author="ira"
+			status="closed"
+			date="2016-03-31T11:24:07Z"
+			guid="0f6b87a9-b0f4-46b9-97c1-2f4928823d92">
+		</message>
+	</annotation>
+	<annotation
+		class="mergeConflict"
+		ref="silfw://localhost/link?app=flex&amp;database=current&amp;server=&amp;tool=default&amp;guid=1a705846-a814-4289-8594-4b874faca6cc&amp;tag=&amp;label=Entry &quot;zitʰɛstmen (chris was here in FW, Ira in LF)&quot; Senses"
+		guid="5a80e8f2-8a57-4d01-bbd9-0061a11fdaef">
+		<message
+			author="merger"
+			status="open"
+			guid="a4a975cd-0afc-4c96-98b9-f0b4045415a0"
+			date="2016-03-31T05:07:13Z">Entry "zitʰɛstmen (chris was here in FW, Ira in LF)" Senses: www-data deleted this element, while ira edited it. The merger kept the change made by ira.<![CDATA[<conflict
+	typeGuid="56F9C347-C4FA-48F4-8028-729F3CFF48EF"
+	class="Chorus.merge.xml.generic.RemovedVsEditedElementConflict"
+	relativeFilePath="Linguistics/Lexicon/Lexicon_07.lexdb"
+	type="Removed Vs Edited Element Conflict"
+	guid="a4a975cd-0afc-4c96-98b9-f0b4045415a0"
+	date="2016-03-31T05:07:13Z"
+	whoWon="ira"
+	htmlDetails="&lt;head&gt;&lt;style type='text/css'&gt;div.alternative {margin-left:  0.25in} div.ws {margin-left:  0.25in} div.property {margin-left:  0.25in} div.checksum {margin-left:  0.25in}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div class='description'&gt;Entry &quot;zitʰɛstmen (chris was here in FW, Ira in LF)&quot; Senses: www-data deleted this element, while ira edited it. The merger kept the change made by ira.&lt;/div&gt;&lt;div class='alternative'&gt;ira's changes: &lt;div class='checksum'&gt;AnthroCodes: EYibuodwlPu6i0+7QfQRKHLBkpA=&lt;/div&gt;&lt;div class='property'&gt;AnthroNote: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: These are English anthropology notes.&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: These are French anthropology notes.&lt;/div&gt;&lt;/div&gt;&lt;div class='property'&gt;Bibliography: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: English bibliography information.&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: French bibliography information.&lt;/div&gt;&lt;/div&gt;&lt;div class='checksum'&gt;Custom: NZ7hgI1XzxBOhk1TibynOmwZKbQ=&lt;/div&gt;&lt;div class='property'&gt;Definition: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: This is the English definition&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: This is the French definition&lt;/div&gt;&lt;/div&gt;&lt;div class='property'&gt;DiscourseNote: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: These are English discourse notes.&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: These are French discourse notes.&lt;/div&gt;&lt;/div&gt;&lt;div class='checksum'&gt;DomainTypes: rt01xMeFsKYyMAxTP/X3AZOvlDM=&lt;/div&gt;&lt;div class='property'&gt;EncyclopedicInfo: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: This is English encyclopedic information.&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: This is French encyclopedic information.&lt;/div&gt;&lt;/div&gt;&lt;div class='property'&gt;GeneralNote: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: These are English general notes.&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: These are French general notes.&lt;/div&gt;&lt;/div&gt;&lt;div class='property'&gt;Gloss: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: English gloss - &lt;span style=&quot;text-decoration: line-through; color: red&quot;&gt;chnaged&lt;/span&gt; &lt;span style=&quot;background: Yellow&quot;&gt;changed&lt;/span&gt; in &lt;span style=&quot;text-decoration: line-through; color: red&quot;&gt;flex&lt;/span&gt;&lt;span style=&quot;background: Yellow&quot;&gt;FW&lt;/span&gt;&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: French gloss&lt;/div&gt;&lt;/div&gt;&lt;div class='property'&gt;GrammarNote: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: These are English grammer notes.&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: These are French grammer notes.&lt;/div&gt;&lt;/div&gt;&lt;div class='checksum'&gt;MorphoSyntaxAnalysis: yW4umdqwjcGUhFhaI7FnMQYsjeg=&lt;/div&gt;&lt;div class='property'&gt;PhonologyNote: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: These are English phonology notes.&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: These are French phonology notes.&lt;/div&gt;&lt;/div&gt;&lt;div class='property'&gt;Restrictions: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: These are English restrictions.&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: These are French restrictions.&lt;/div&gt;&lt;/div&gt;&lt;div class='property'&gt;ScientificName: Scientific name&lt;/div&gt;&lt;div class='property'&gt;SemanticsNote: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: These are English semantic notes.&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: These are French semantic notes.&lt;/div&gt;&lt;/div&gt;&lt;div class='checksum'&gt;SenseType: Zey5viZX4G9+9ixbG9shfmBLOGc=&lt;/div&gt;&lt;div class='property'&gt;SocioLinguisticsNote: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: These are English sociolinguistic notes.&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: These are French sociolinguistic notes.&lt;/div&gt;&lt;/div&gt;&lt;div class='property'&gt;Source: Source information&lt;/div&gt;&lt;div class='checksum'&gt;Status: ro6AXksI2qmylqUSD6MpGygMo+I=&lt;/div&gt;&lt;div class='checksum'&gt;UsageTypes: ECNvT9egrC9Lc4mrvFhb8b/AbPA=&lt;/div&gt;&lt;/div&gt;&lt;div class='mergechoice'&gt;The merger kept the change made by ira.&lt;/div&gt;&lt;/body&gt;"
+	contextPath="silfw://localhost/link?app=flex&amp;database=current&amp;server=&amp;tool=default&amp;guid=1a705846-a814-4289-8594-4b874faca6cc&amp;tag=&amp;label=Entry &quot;zitʰɛstmen (chris was here in FW, Ira in LF)&quot; Senses"
+	contextDataLabel="Entry &quot;zitʰɛstmen (chris was here in FW, Ira in LF)&quot; Senses">
+	<MergeSituation
+		alphaUserId="www-data"
+		betaUserId="ira"
+		alphaUserRevision="a5bfb299b98e"
+		betaUserRevision="2f2821abef62"
+		path="Linguistics/Lexicon/Lexicon_07.lexdb"
+		conflictHandlingMode="WeWin" />
+</conflict>]]></message>
+		<message
+			author="ira"
+			status="closed"
+			date="2016-03-31T12:51:58Z"
+			guid="69029a3a-ce27-4ef5-ac49-5ee0244630cd">
+		</message>
+	</annotation>
+	<annotation
+		class="notification"
+		ref="silfw://localhost/link?app=flex&amp;database=current&amp;server=&amp;tool=default&amp;guid=1a705846-a814-4289-8594-4b874faca6cc&amp;tag=&amp;label=Entry &quot;zitʰɛstmen (chris was here in FW, Ira in LF)&quot; Senses"
+		guid="31719ee4-c161-4e59-a31e-bc9ffdad2153">
+		<message
+			author="merger"
+			status="open"
+			guid="6376aa40-8d34-4b6f-b1b5-8b2cda718370"
+			date="2016-03-31T05:07:13Z">Entry "zitʰɛstmen (chris was here in FW, Ira in LF)" Senses: www-data and ira both inserted material in this element in the same place. The automated merger cannot be sure of the correct order for the inserted material, but kept both of them.<![CDATA[<conflict
+	typeGuid="B77C0D86-2368-4380-B2E4-7943F3E7553C"
+	class="Chorus.merge.xml.generic.AmbiguousInsertConflict"
+	relativeFilePath="Linguistics/Lexicon/Lexicon_07.lexdb"
+	type="Ambiguous Insert Warning"
+	guid="6376aa40-8d34-4b6f-b1b5-8b2cda718370"
+	date="2016-03-31T05:07:13Z"
+	whoWon="both users"
+	htmlDetails="&lt;head&gt;&lt;style type='text/css'&gt;div.alternative {margin-left:  0.25in} div.ws {margin-left:  0.25in} div.property {margin-left:  0.25in} div.checksum {margin-left:  0.25in}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div class='description'&gt;Entry &quot;zitʰɛstmen (chris was here in FW, Ira in LF)&quot; Senses: www-data and ira both inserted material in this element in the same place. The automated merger cannot be sure of the correct order for the inserted material, but kept both of them.&lt;/div&gt;&lt;div class='alternative'&gt;www-data's changes: &lt;div class='property'&gt;Senses: &lt;div class='checksum'&gt;&lt;span style=&quot;text-decoration: line-through; color: red&quot;&gt;AnthroCodes&lt;/span&gt;&lt;span style=&quot;text-decoration: line-through; color: red&quot;&gt;:&lt;/span&gt; &lt;span style=&quot;text-decoration: line-through; color: red&quot;&gt;EYibuodwlPu6i0+7QfQRKHLBkpA=&lt;/span&gt;&lt;div class='property'&gt;AnthroNote: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: These are English anthropology notes.&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: These are French anthropology notes.&lt;/div&gt;&lt;/div&gt;&lt;div class='property'&gt;Bibliography: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: English bibliography information.&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: French bibliography information.&lt;/div&gt;&lt;/div&gt;&lt;div class='checksum'&gt;Custom: NZ7hgI1XzxBOhk1TibynOmwZKbQ=&lt;/div&gt;&lt;div class='property'&gt;Definition: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: This is the English definition&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: This is the French definition&lt;/div&gt;&lt;/div&gt;&lt;div class='property'&gt;DiscourseNote: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: These are English discourse notes.&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: These are French discourse notes.&lt;/div&gt;&lt;/div&gt;&lt;div class='checksum'&gt;&lt;span style=&quot;text-decoration: line-through; color: red&quot;&gt;DomainTypes&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='checksum'&gt;&lt;span style=&quot;background: Yellow&quot;&gt;DoNotPublishIn&lt;/span&gt;: &lt;span style=&quot;text-decoration: line-through; color: red&quot;&gt;rt01xMeFsKYyMAxTP/X3AZOvlDM=&lt;/span&gt;&lt;span style=&quot;background: Yellow&quot;&gt;YLHbGFtFRA7M3FZEb51A2/25ylM=&lt;/span&gt;&lt;/div&gt;&lt;div class='property'&gt;EncyclopedicInfo: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: This is English encyclopedic information.&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: This is French encyclopedic information.&lt;/div&gt;&lt;/div&gt;&lt;div class='property'&gt;GeneralNote: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: These are English general notes.&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: These are French general notes.&lt;/div&gt;&lt;/div&gt;&lt;div class='property'&gt;Gloss: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: English gloss - chnaged in flex&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: French gloss&lt;/div&gt;&lt;/div&gt;&lt;div class='property'&gt;GrammarNote: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: These are English grammer notes.&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: These are French grammer notes.&lt;/div&gt;&lt;/div&gt;&lt;div class='checksum'&gt;MorphoSyntaxAnalysis: yW4umdqwjcGUhFhaI7FnMQYsjeg=&lt;/div&gt;&lt;div class='property'&gt;PhonologyNote: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: These are English phonology notes.&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: These are French phonology notes.&lt;/div&gt;&lt;/div&gt;&lt;div class='property'&gt;Restrictions: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: These are English restrictions.&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: These are French restrictions.&lt;/div&gt;&lt;/div&gt;&lt;div class='property'&gt;ScientificName: Scientific name&lt;/div&gt;&lt;div class='property'&gt;SemanticsNote: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: These are English semantic notes.&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: These are French semantic notes.&lt;/div&gt;&lt;/div&gt;&lt;div class='checksum'&gt;&lt;span style=&quot;text-decoration: line-through; color: red&quot;&gt;SenseType&lt;/span&gt;&lt;span style=&quot;text-decoration: line-through; color: red&quot;&gt;:&lt;/span&gt; &lt;span style=&quot;text-decoration: line-through; color: red&quot;&gt;Zey5viZX4G9+9ixbG9shfmBLOGc=&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='property'&gt;SocioLinguisticsNote: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: These are English sociolinguistic notes.&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: These are French sociolinguistic notes.&lt;/div&gt;&lt;/div&gt;&lt;div class='property'&gt;Source: Source information&lt;/div&gt;&lt;div class='checksum'&gt;&lt;span style=&quot;text-decoration: line-through; color: red&quot;&gt;Status&lt;/span&gt;&lt;span style=&quot;text-decoration: line-through; color: red&quot;&gt;:&lt;/span&gt; &lt;span style=&quot;text-decoration: line-through; color: red&quot;&gt;ro6AXksI2qmylqUSD6MpGygMo+I=&lt;/span&gt;&lt;/div&gt;&lt;div class='checksum'&gt;&lt;span style=&quot;text-decoration: line-through; color: red&quot;&gt;UsageTypes&lt;/span&gt;&lt;span style=&quot;text-decoration: line-through; color: red&quot;&gt;:&lt;/span&gt; &lt;span style=&quot;text-decoration: line-through; color: red&quot;&gt;ECNvT9egrC9Lc4mrvFhb8b/AbPA=&lt;/span&gt;&lt;/div&gt;&lt;div class='property'&gt;Definition: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: This is the English definition for 2.&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: This is the French definition for 2.&lt;/div&gt;&lt;/div&gt;&lt;div class='checksum'&gt;&lt;span style=&quot;background: Yellow&quot;&gt;DoNotPublishIn&lt;/span&gt;&lt;span style=&quot;background: Yellow&quot;&gt;:&lt;/span&gt; &lt;span style=&quot;background: Yellow&quot;&gt;YLHbGFtFRA7M3FZEb51A2/25ylM=&lt;/span&gt;&lt;/div&gt;&lt;div class='property'&gt;Gloss: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: English gloss2&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: French gloss2&lt;/div&gt;&lt;/div&gt;&lt;div class='checksum'&gt;MorphoSyntaxAnalysis: uRVjHM0EFMyChW2wL9+KNZypi6c=&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='alternative'&gt;ira's changes: &lt;div class='property'&gt;Senses: &lt;div class='checksum'&gt;AnthroCodes: EYibuodwlPu6i0+7QfQRKHLBkpA=&lt;/div&gt;&lt;div class='property'&gt;AnthroNote: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: These are English anthropology notes.&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: These are French anthropology notes.&lt;/div&gt;&lt;/div&gt;&lt;div class='property'&gt;Bibliography: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: English bibliography information.&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: French bibliography information.&lt;/div&gt;&lt;/div&gt;&lt;div class='checksum'&gt;Custom: NZ7hgI1XzxBOhk1TibynOmwZKbQ=&lt;/div&gt;&lt;div class='property'&gt;Definition: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: This is the English definition&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: This is the French definition&lt;/div&gt;&lt;/div&gt;&lt;div class='property'&gt;DiscourseNote: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: These are English discourse notes.&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: These are French discourse notes.&lt;/div&gt;&lt;/div&gt;&lt;div class='checksum'&gt;DomainTypes: rt01xMeFsKYyMAxTP/X3AZOvlDM=&lt;/div&gt;&lt;div class='property'&gt;EncyclopedicInfo: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: This is English encyclopedic information.&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: This is French encyclopedic information.&lt;/div&gt;&lt;/div&gt;&lt;div class='property'&gt;GeneralNote: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: These are English general notes.&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: These are French general notes.&lt;/div&gt;&lt;/div&gt;&lt;div class='property'&gt;Gloss: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: English gloss - &lt;span style=&quot;text-decoration: line-through; color: red&quot;&gt;chnaged&lt;/span&gt; &lt;span style=&quot;background: Yellow&quot;&gt;changed&lt;/span&gt; in &lt;span style=&quot;text-decoration: line-through; color: red&quot;&gt;flex&lt;/span&gt;&lt;span style=&quot;background: Yellow&quot;&gt;FW&lt;/span&gt;&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: French gloss&lt;/div&gt;&lt;/div&gt;&lt;div class='property'&gt;GrammarNote: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: These are English grammer notes.&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: These are French grammer notes.&lt;/div&gt;&lt;/div&gt;&lt;div class='checksum'&gt;MorphoSyntaxAnalysis: yW4umdqwjcGUhFhaI7FnMQYsjeg=&lt;/div&gt;&lt;div class='property'&gt;PhonologyNote: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: These are English phonology notes.&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: These are French phonology notes.&lt;/div&gt;&lt;/div&gt;&lt;div class='property'&gt;Restrictions: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: These are English restrictions.&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: These are French restrictions.&lt;/div&gt;&lt;/div&gt;&lt;div class='property'&gt;ScientificName: Scientific name&lt;/div&gt;&lt;div class='property'&gt;SemanticsNote: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: These are English semantic notes.&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: These are French semantic notes.&lt;/div&gt;&lt;/div&gt;&lt;div class='checksum'&gt;SenseType: Zey5viZX4G9+9ixbG9shfmBLOGc=&lt;/div&gt;&lt;div class='property'&gt;SocioLinguisticsNote: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: These are English sociolinguistic notes.&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: These are French sociolinguistic notes.&lt;/div&gt;&lt;/div&gt;&lt;div class='property'&gt;Source: Source information&lt;/div&gt;&lt;div class='checksum'&gt;Status: ro6AXksI2qmylqUSD6MpGygMo+I=&lt;/div&gt;&lt;div class='checksum'&gt;UsageTypes: ECNvT9egrC9Lc4mrvFhb8b/AbPA=&lt;/div&gt;&lt;div class='property'&gt;Definition: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: This is the English definition for 2.&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: This is the French definition for 2.&lt;/div&gt;&lt;/div&gt;&lt;div class='property'&gt;Gloss: &lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: English gloss2&lt;/div&gt;&lt;div class='ws'&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: French gloss2&lt;/div&gt;&lt;/div&gt;&lt;div class='checksum'&gt;MorphoSyntaxAnalysis: uRVjHM0EFMyChW2wL9+KNZypi6c=&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class='mergechoice'&gt;The merger kept the change made by both users.&lt;/div&gt;&lt;/body&gt;"
+	contextPath="silfw://localhost/link?app=flex&amp;database=current&amp;server=&amp;tool=default&amp;guid=1a705846-a814-4289-8594-4b874faca6cc&amp;tag=&amp;label=Entry &quot;zitʰɛstmen (chris was here in FW, Ira in LF)&quot; Senses"
+	contextDataLabel="Entry &quot;zitʰɛstmen (chris was here in FW, Ira in LF)&quot; Senses">
+	<MergeSituation
+		alphaUserId="www-data"
+		betaUserId="ira"
+		alphaUserRevision="a5bfb299b98e"
+		betaUserRevision="2f2821abef62"
+		path="Linguistics/Lexicon/Lexicon_07.lexdb"
+		conflictHandlingMode="WeWin" />
+</conflict>]]></message>
+		<message
+			author="ira"
+			status="closed"
+			date="2016-03-31T12:51:53Z"
+			guid="357e23eb-9253-41fc-aac9-65a54f891737">
+		</message>
+	</annotation>
+	<annotation
+		class="mergeConflict"
+		ref="silfw://localhost/link?app=flex&amp;database=current&amp;server=&amp;tool=default&amp;guid=bf4e4261-5ac3-4b60-8fee-1841ad026728&amp;tag=&amp;label=Entry &quot;zitʰɛstmen (chris was here in FW, Ira in LF)&quot; Senses 1 Gloss"
+		guid="51e1f148-492a-41d3-92f0-6f31f3cc9627">
+		<message
+			author="merger"
+			status="open"
+			guid="fac02a9b-ab53-491c-ba0f-c86f846f1021"
+			date="2016-05-03T02:01:17Z">Entry "zitʰɛstmen (chris was here in FW, Ira in LF)" Senses 1 Gloss: Darcy and ira edited this element.<![CDATA[<conflict
+	typeGuid="c1ed6dbe-e382-11de-8a39-0800200c9a66"
+	class="Chorus.merge.xml.generic.XmlTextBothEditedTextConflict"
+	relativeFilePath="Linguistics\Lexicon\Lexicon_07.lexdb"
+	type="Both Edited Xml Text Element Conflict"
+	guid="fac02a9b-ab53-491c-ba0f-c86f846f1021"
+	date="2016-05-03T02:01:17Z"
+	whoWon="Darcy"
+	htmlDetails="&lt;head&gt;&lt;style type='text/css'&gt;div.alternative {margin-left:  0.25in} div.ws {margin-left:  0.25in} div.property {margin-left:  0.25in} div.checksum {margin-left:  0.25in}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div class='description'&gt;Entry &quot;zitʰɛstmen (chris was here in FW, Ira in LF)&quot; Senses 1 Gloss: Darcy and ira edited this element.&lt;/div&gt;&lt;div class='alternative'&gt;Darcy's changes: &lt;div&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: English gloss - &lt;span style=&quot;background: Yellow&quot;&gt;DW&lt;/span&gt; changed in FW &lt;span style=&quot;background: Yellow&quot;&gt;on&lt;/span&gt; &lt;span style=&quot;background: Yellow&quot;&gt;May&lt;/span&gt; &lt;span style=&quot;background: Yellow&quot;&gt;3&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: French gloss&lt;/div&gt;&lt;/div&gt;&lt;div class='alternative'&gt;ira's changes: &lt;div&gt;&lt;span class=&quot;ws&quot;&gt;en&lt;/span&gt;: English gloss - changed in FW &lt;span style=&quot;background: Yellow&quot;&gt;by&lt;/span&gt; &lt;span style=&quot;background: Yellow&quot;&gt;Ira&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span class=&quot;ws&quot;&gt;fr&lt;/span&gt;: French gloss&lt;/div&gt;&lt;/div&gt;&lt;div class='mergechoice'&gt;The merger kept the change made by Darcy.&lt;/div&gt;&lt;/body&gt;"
+	contextPath="silfw://localhost/link?app=flex&amp;database=current&amp;server=&amp;tool=default&amp;guid=bf4e4261-5ac3-4b60-8fee-1841ad026728&amp;tag=&amp;label=Entry &quot;zitʰɛstmen (chris was here in FW, Ira in LF)&quot; Senses 1 Gloss"
+	contextDataLabel="Entry &quot;zitʰɛstmen (chris was here in FW, Ira in LF)&quot; Senses 1 Gloss">
+	<MergeSituation
+		alphaUserId="Darcy"
+		betaUserId="ira"
+		alphaUserRevision="c5af7107788d"
+		betaUserRevision="8fa66f0e5fc8"
+		path="Linguistics\Lexicon\Lexicon_07.lexdb"
+		conflictHandlingMode="WeWin" />
+</conflict>]]></message>
+		<message
+			author="ira"
+			status="closed"
+			date="2016-05-23T16:49:17Z"
+			guid="050dba5d-7e46-432e-8ab6-1bcc1b398ff1">
+		</message>
+	</annotation>
+</notes>
