@@ -30,9 +30,9 @@ def addItems(py_name, py_projectCode, py_projectSizeInMB, py_numberOfRevisions, 
         (py_name, py_projectCode, py_projectSizeInMB, py_numberOfRevisions, py_createdDate, py_modifiedDate) )
 
     # query and print the result, this can be commented out later
-    cur.execute("SELECT * FROM project.metadata WHERE name = %s;", (py_name,))
-    query = cur.fetchone()
-    print(query)
+    #cur.execute("SELECT * FROM project.metadata WHERE name = %s;", (py_name,))
+    #query = cur.fetchone()
+    #print(query)
 
     # end of addItems()
 
