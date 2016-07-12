@@ -1,9 +1,12 @@
 #!/usr/bin/python
+import sys
 import psycopg2
+from types import *
+import datetime
 
-def connect():
-    # Connection string, replace placeholder with better password
-    conn_string = "host=localhost dbname=languagedepot-metadata user=postgres password=placeholder"
+def connect(passwd):
+    # Connection string
+    conn_string = "host=localhost dbname=languagedepot-metadata user=postgres password=" + passwd
 
     # prove that we are connecting to the database:
     print ("Connecting to database\n ->%s") % (conn_string)
@@ -17,13 +20,18 @@ def connect():
     # end of connect()
 
 def addItems(py_name, py_projectCode, py_projectSizeInMB, py_numberOfRevisions, py_createdDate, py_modifiedDate):
-    # seven items
+    # six items
     assert type(py_name) is StringType, "py_name is not a string"
-    assert type(py_projectCode) is StringType, "py_name is not a string"
-    assert type(py_projectSizeInMB) is IntType, "py_projectCode is not an integer"
+    assert type(py_projectCode) is StringType, "py_projectCode is not a string"
+    assert type(py_projectSizeInMB) is IntType, "py_projectSizeInMB is not an integer"
     assert type(py_numberOfRevisions) is IntType, "py_numberOfRevisions is not an integer"
-    assert type(py_createdDate) is datetime.date, "py_createdDate is not a date"
-    assert type(py_modifiedDate) is datetime.date, "py_modifiedDate is not a date"
+    assert ( len(py_createdDate) == 10 and py_createdDate[:4].isdigit() and py_createdDate[5:7].isdigit() \
+    and '-' in py_createdDate[4:5] and '-' in py_createdDate[7:8] ) \
+     is True, "py_createdDate is not in the correct format. The correct format is '2016-12-16', your date is %s." % (py_createdDate)
+    assert ( len(py_modifiedDate) == 10 and py_modifiedDate[:4].isdigit() and py_modifiedDate[5:7].isdigit() \
+    and '-' in py_modifiedDate[4:5] and '-' in py_modifiedDate[7:8] ) \
+     is True, "py_modifiedDate is not in the correct format. The correct format is '2016-12-16', your date is %s." % (py_modifiedDate)
+
     # insert the new items
     cur.execute("""INSERT INTO project.metadata (name, projectCode, projectSizeInMB, numberOfRevisions, createdDate, modifiedDate)
      VALUES (%s, %s, %s, %s, %s, %s);""",
@@ -44,7 +52,12 @@ def commit():
     # end of commit()
 
 if __name__ == '__main__':
-    import sys
-    connect()
-    addItems(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], sys.argv[6])
+    usr = raw_input("Password:\n")
+    connect(usr)
+    entered_name = raw_input("Name:\n")
+    entered_size = input("Size:\n")
+    entered_revs = input("Revisions:\n")
+    entered_1stc = raw_input("Date of first commit:\n")
+    entered_lstc = raw_input("Date of last commit:\n")
+    addItems(entered_name, entered_name, entered_size, entered_revs, entered_1stc, entered_lstc)
     #commit()
