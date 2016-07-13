@@ -18,7 +18,7 @@ class Runner(object):
         # gets the config file, checks if they supplied credentials
         configOutput = check_output(['cat', config])
         if not "password=" in configOutput: # "password=" is only one format, perhaps add more formats?
-            print "please supply a user password."
+            print ("please supply a user password.")
             return
         # stores the user's password (and other account details, once made)
         global usrpasswd
@@ -33,6 +33,7 @@ class Runner(object):
         # find all files/folders in root folder
         files = glob.glob('*')
         listOfProjects = filter(lambda f: os.path.isdir(f), files)
+        listOfProjects.sort()
         print (listOfProjects)
 
         for folder in listOfProjects:

@@ -10,11 +10,11 @@ def connect(passwd):
 
     # prove that we are connecting to the database:
     print ("Connecting to database\n ->%s") % (conn_string)
+    global conn # needs to be global in order to commit changes
     conn = psycopg2.connect(conn_string)
     print ("Connected!\n")
 
-    # make a cursor object which can be used to perform queries
-    global cur
+    global cur # a cursor object which can be used to perform SQL actions
     cur = conn.cursor()
 
     # end of connect()
