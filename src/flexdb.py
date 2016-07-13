@@ -2,7 +2,6 @@
 import sys
 import psycopg2
 from types import *
-import datetime
 
 def connect(passwd):
     # Connection string
@@ -10,6 +9,7 @@ def connect(passwd):
 
     # prove that we are connecting to the database:
     print ("Connecting to database\n ->%s") % (conn_string)
+    
     global conn # needs to be global in order to commit changes
     conn = psycopg2.connect(conn_string)
     print ("Connected!\n")

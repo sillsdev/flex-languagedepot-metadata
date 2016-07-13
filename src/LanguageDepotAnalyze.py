@@ -1,31 +1,23 @@
 #!/usr/bin/python
 import sys
 import os
-import glob,os.path
+import glob,os.path # used for finding files/folders
 import flexdb
-from subprocess import check_output
-from pipes import quote
+from subprocess import check_output # used for bash commands (when required), unix-only
+from pipes import quote # used to sanitize bash input when complex commands are required, unix-only
+import json # data type no.1
+import yaml # data type no.2, note: LibYAML based. LibYAML makes PyYAML faster.
 
 class Runner(object):
     """find the files in this directory and ones above this directory,
     including the mercurial files"""
+
     def __init__(self, config):
         # currently, we can get the folder we need by where the file was launched from
         # we just need to know what the config is for the program
         global rootProjectFolder
         rootProjectFolder = os.getcwd()
-
-        # gets the config file, checks if they supplied credentials
-        configOutput = check_output(['cat', config])
-        if not "password=" in configOutput: # "password=" is only one format, perhaps add more formats?
-            print ("please supply a user password.")
-            return
-        # stores the user's password (and other account details, once made)
-        global usrpasswd
-        for entry in configOutput.split('\n'):
-            if "password=" in entry:
-                passwdLine = entry.strip()
-                usrpasswd = passwdLine.replace('password=', '')
+        self._checkCfgType(config)
 
         # end of init
 
@@ -41,6 +33,49 @@ class Runner(object):
             analyzer.analyze()
             analyzer.insertIntoDb(usrpasswd)
 
+    def _checkCfgType(self, config):
+        # declare credential fields here
+        global usrpasswd
+        # check what kind of format the config file uses
+        configOutput = check_output(['cat', config])
+        if ( ".json" in config ):
+            # JSON
+            try:
+                parsedConfig = json.loads(configOutput)
+                parsedConfig['password']
+            except (ValueError):
+                print ("%s is not valid json.") % (config)
+                return
+            except (KeyError):
+                print ("%s does not contain proper credentials. (must include 'password')") % (config)
+            else:
+                usrpasswd = parsedConfig['password']
+
+        elif( ".yaml" in config or ".yml" in config ):
+            # Yaml Ain't Markup Language (but it is pretty good object notation)
+            try:
+                parsedConfig = yaml.safe_load(configOutput)
+                parsedConfig['password']
+            except (yaml.scanner.ScannerError):
+                print ("%s is not valid. (might contain tabs in entries)") % (config)
+            else:
+                if ( parsedConfig['password'] == None ):
+                    print ('please supply a user password.')
+                else:
+                    usrpasswd = parsedConfig['password']
+
+        else:
+            # plain text files
+            if not "password=" in configOutput: # "password=" is only one format, perhaps add more formats?
+                print ('please supply a user password.')
+                return
+            # stores the user's password (and other account details, once made)
+            for entry in configOutput.split('\n'):
+                if "password=" in entry:
+                    passwdLine = entry.strip()
+                    usrpasswd = passwdLine.replace('password=', '')
+
+        # end of _checkCfgType
 
     # end of Runner class
 
