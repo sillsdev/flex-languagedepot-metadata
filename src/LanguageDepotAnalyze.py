@@ -1,12 +1,12 @@
 #!/usr/bin/python
 import sys
 import os
-import glob,os.path # used for finding files/folders
+import glob # used for finding files/folders
 import flexdb
 from subprocess import check_output # used for bash commands (when required), unix-only
 from pipes import quote # used to sanitize bash input when complex commands are required, unix-only
 import json # data type no.1
-import yaml # data type no.2, note: LibYAML based. LibYAML makes PyYAML faster.
+import yaml # data type no.2, note: LibYAML based. LibYAML makes PyYAML faster at the cost of being C-based.
 
 class Runner(object):
     """find the files in this directory and ones above this directory,
@@ -22,6 +22,9 @@ class Runner(object):
         # end of init
 
     def run(self):
+        # checks to see if the credentials came through
+        if ( not 'usrpasswd' in globals() ):
+            print "Not enough credentials."
         # find all files/folders in root folder
         files = glob.glob('*')
         listOfProjects = filter(lambda f: os.path.isdir(f), files)
@@ -50,7 +53,6 @@ class Runner(object):
                 print ("%s does not contain proper credentials. (must include 'password')") % (config)
             else:
                 usrpasswd = parsedConfig['password']
-
         elif( ".yaml" in config or ".yml" in config ):
             # Yaml Ain't Markup Language (but it is pretty good object notation)
             try:
@@ -61,9 +63,9 @@ class Runner(object):
             else:
                 if ( parsedConfig['password'] == None ):
                     print ('please supply a user password.')
+                    return
                 else:
                     usrpasswd = parsedConfig['password']
-
         else:
             # plain text files
             if not "password=" in configOutput: # "password=" is only one format, perhaps add more formats?
@@ -101,7 +103,11 @@ class Analyze(object):
 
     # the standard command for getting folder size is filtered down to the mere number
     def _getSizeInMB(self):
-        return int( (check_output( 'du -hcs %s | sed "2q;d"' % quote(self.hgdir), shell=True )).strip('M\ttotal\n') )
+        catch = check_output( 'du -hcs %s | sed "2q;d"' % quote(self.hgdir), shell=True ).strip('M\ttotal\n')
+        if ('K' in catch):
+            return 1
+        else:
+            return int(catch)
 
     # goes to the folder, gets the tip of the mercurial project, and filters out its commit number
     def _getNumberOfRevisions(self):
