@@ -2,13 +2,8 @@
 import os
 from LanguageDepotAnalyze import Runner
 
-# looks at where the project is placed, and moves to
-# the data directory based on that information
-dataPath = '/data'
-projPath = os.getcwd().replace('/src', '')
-os.chdir(projPath + dataPath)
-
 # config file is specified, then used for the program!
-cfgName = 'elconfig'
-runner = Runner(cfgName)
+cfgName = '/home/daniel/git/flex-languagedepot-metadata/src/exconfig.json'
+dataPath = '/home/daniel/git/flex-languagedepot-metadata/data'
+runner = Runner(cfgName, dataPath)
 runner.run()
