@@ -83,8 +83,7 @@ class Runner(object):
             # Analyzer needs to pass rootProjectFolder as a parameter
             # so that the directory can be cropped out of the name later
             analyzer = Analyze(folder, rootProjectFolder)
-            analyzer.analyze()
-            analyzer.insertIntoDb(usrpasswd)
+            analyzer.analyzeAndInsertIntoDb(usrpasswd)
 
     # end of Runner class
 
@@ -100,6 +99,16 @@ class Analyze(object):
         self.createdDate = None
         self.modifiedDate = None
         self.hgdir = hgdir
+
+    def analyzeAndInsertIntoDb(self, password):
+
+        # use an INSERT statement to insert the project row
+
+        for capabilityName in listOfCapabilities:
+            capabilityModule = importlib.import_module(capabilityName)
+            result = capabilityModule.analyze(self.hgdir)
+            capabilityModule.updateDb(dbconn, result)
+
 
     def analyze(self):
         self.projectCode = self.name
