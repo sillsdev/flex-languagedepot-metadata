@@ -18,11 +18,3 @@ class capability(metaclass=ABCMeta):
     @abstractmethod
     def updateDb(dbConnection, py_name, value):
         raise NotImplementedError()
-
-#
-#
-#
-#
-#
-#
-#
