@@ -110,6 +110,7 @@ class Analyze(object):
         # insert name into database, this creates a row we can use later
         curs = conn.cursor()
         curs.execute( "INSERT INTO project.metadata (name) VALUES (%s);", (self.name,) )
+        conn.commit()
 
         listOfCapabilities = self.getListOfCapabilities()
         # import a capability module from the list
