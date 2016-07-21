@@ -101,7 +101,7 @@ class Analyze(object):
         for capabilityName in listOfCapabilities:
             capabilityModule = import_module(capabilityName)
             result = capabilityModule.tasks.analyze(self.hgdir)
-            capabilityModule.tasks.updateDb(conn_string, self.name, result)
+            capabilityModule.tasks.updateDb(conn, self.name, result)
 
         # end of run()
 
