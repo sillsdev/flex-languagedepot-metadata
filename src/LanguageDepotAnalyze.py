@@ -27,25 +27,34 @@ class Runner(object):
 
     def _checkCfgType(self, config):
         # declare credential fields here
+        global usrhost
+        global databse
+        global usrname
         global usrpasswd
         # check what kind of format the config file uses
         configOutput = subprocess.check_output(['cat', config]).decode('utf-8')
         try:
             parsedConfig = json.loads(configOutput)
+            parsedConfig['host']
+            parsedConfig['dbname']
+            parsedConfig['user']
             parsedConfig['password']
         except (ValueError):
-            print ("%s is not valid json.") % (config)
+            print ( "{} is not valid json.".format(config) )
             return
         except (KeyError):
-            print ("%s does not contain proper credentials. (must include 'password')") % (config)
+            print ( "{} does not contain proper credentials. (must include 'host', 'dbname', 'user', and 'password')".format(config) )
             return
         else:
+            usrhost = parsedConfig['host']
+            databse = parsedConfig['dbname']
+            usrname = parsedConfig['user']
             usrpasswd = parsedConfig['password']
 
 
     def run(self):
         # checks to see if the credentials came through
-        if ( not "usrpasswd" in globals() ):
+        if ( not "usrpasswd" in globals() or not "usrname" in globals() or not "databse" in globals() or not "usrhost" in globals() ):
             print ('Not enough credentials.')
             return
         # find all files/folders in root folder
@@ -73,7 +82,7 @@ class Analyze(object):
 
     def run(self, password):
         # make connection to database
-        conn_string = 'host=localhost dbname=languagedepot-metadata user=postgres password=' + password
+        conn_string = 'host=%s dbname=%s user=%s password=%s' % (usrhost, databse, usrname, usrpasswd)
         try:
             conn = psycopg2.connect(conn_string)
         except:
