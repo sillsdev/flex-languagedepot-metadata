@@ -43,8 +43,12 @@ abort: unknown revision '1'!
 ```
 However, your data will still be added to the database.
 
-You can now query the database for your project(s) data, with a simple `SELECT * FROM project.metadata;`:
+You can now query the database for your project data, with a simple `SELECT * FROM project.metadata;`:
 ```
 $ psql languagedepot-metadata
 =# SELECT * FROM project.metadata;
+```
+However, you can also export the data to a CSV file:
+```
+=# \copy (SELECT * FROM project.metadata) TO '/your/data/goes/here.csv' WITH (FORMAT CSV);
 ```
