@@ -3,7 +3,6 @@ import sys
 import os
 import glob
 import json # data type no.1
-import yaml # data type no.2, note: LibYAML based. LibYAML makes PyYAML faster at the cost of being C-based.
 import psycopg2
 from importlib import import_module
 import subprocess
@@ -30,45 +29,19 @@ class Runner(object):
         # declare credential fields here
         global usrpasswd
         # check what kind of format the config file uses
-        configOutput = subprocess.check_output(['cat', config])
-
-        # JSON
-        if ( ".json" in config ):
-            try:
-                parsedConfig = json.loads(configOutput)
-                parsedConfig['password']
-            except (ValueError):
-                print ("%s is not valid json.") % (config)
-                return
-            except (KeyError):
-                print ("%s does not contain proper credentials. (must include 'password')") % (config)
-            else:
-                usrpasswd = parsedConfig['password']
-        # Yaml Ain't Markup Language (but it is pretty good object notation)
-        elif( ".yaml" in config or ".yml" in config ):
-            try:
-                parsedConfig = yaml.safe_load(configOutput)
-                parsedConfig['password']
-            except (yaml.scanner.ScannerError):
-                print ("%s is not valid. (might contain tabs in entries)") % (config)
-            else:
-                if ( parsedConfig['password'] == None ):
-                    print ('please supply a user password.')
-                    return
-                else:
-                    usrpasswd = parsedConfig['password']
-        # plain text files
+        configOutput = subprocess.check_output(['cat', config]).decode('utf-8')
+        try:
+            parsedConfig = json.loads(configOutput)
+            parsedConfig['password']
+        except (ValueError):
+            print ("%s is not valid json.") % (config)
+            return
+        except (KeyError):
+            print ("%s does not contain proper credentials. (must include 'password')") % (config)
+            return
         else:
-            if ( not "password=" in configOutput ): # "password=" is only one format, perhaps add more formats?
-                print ('please supply a user password.')
-                return
-            # stores the user's password (and other account details, once made)
-            for entry in configOutput.split('\n'):
-                if "password=" in entry:
-                    passwdLine = entry.strip()
-                    usrpasswd = passwdLine.replace('password=', '')
+            usrpasswd = parsedConfig['password']
 
-        # end of _checkCfgType
 
     def run(self):
         # checks to see if the credentials came through
@@ -120,6 +93,8 @@ class Analyze(object):
             capabilityModule = import_module(capabilityName)
             result = capabilityModule.tasks.analyze(self.hgdir)
             capabilityModule.tasks.updateDb(conn_string, self.name, result)
+
+        # end of run()
 
     def getListOfCapabilities(self):
         # glob all classes in the capabilities folder
