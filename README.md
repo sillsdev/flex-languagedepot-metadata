@@ -16,6 +16,9 @@ A python script to collect FLEx metadata from a list of local project folders an
 
 ### Setup
 
+- run src/getDependences.sh to automate installing the above dependencies with apt-get
+- run src/setupPostgresql.sh to automate creating a role for the database we'll use
+
 Note: make sure you have set up your `postgres` user with a database usage password. By default, it will not have a password, and you will need to do this before proceeding. You will also need to be running a user with `createdb` and `dropdb` permissions in postgresql; `postgres` will have these already.
 
 Place all the folders you wish to scan in a single directory. Make a config file with the token 'password', which contains your user password for `postgres`. You may place the config file wherever you like.
