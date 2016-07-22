@@ -16,6 +16,6 @@ class tasks(capability):
         dbConn.commit() # save changes to db
 
     def getColumns():
-        return 'modifiedDate'
+        return ['modifiedDate','date']
 
     # end of tasks

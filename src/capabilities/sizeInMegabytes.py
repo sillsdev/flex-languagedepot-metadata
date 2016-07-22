@@ -20,6 +20,6 @@ class tasks(capability):
         dbConn.commit() # save changes to db
 
     def getColumns():
-        return 'projectSizeInMB'
+        return ['projectSizeInMB','int']
 
     # end of tasks

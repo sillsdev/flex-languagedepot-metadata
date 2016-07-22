@@ -94,7 +94,7 @@ class Analyze(object):
         curs.execute( "INSERT INTO project.metadata (name) VALUES (%s);", (self.name,) )
         conn.commit()
 
-        listOfCapabilities = self.getListOfCapabilities()
+        listOfCapabilities = getListOfCapabilities()
         # import a capability module from the list
         # use a capability to get data from the project, then add that data
         # to the row received from before
@@ -105,15 +105,16 @@ class Analyze(object):
 
         # end of run()
 
-    def getListOfCapabilities(self):
-        # glob all classes in the capabilities folder
-        # except the base class (capability.py) and __init__.py
-        listOfCapabilities = []
-        unfiltered = glob.glob('capabilities/*.py')
-        unfiltered.remove('capabilities/capability.py')
-        unfiltered.remove('capabilities/__init__.py')
-        for item in unfiltered:
-            listOfCapabilities.append(item.replace('/', '.').replace('.py', ''))
-        return listOfCapabilities
 
     # end of Analyze class
+
+def getListOfCapabilities():
+    # glob all classes in the capabilities folder
+    # except the base class (capability.py) and __init__.py
+    listOfCapabilities = []
+    unfiltered = glob.glob('capabilities/*.py')
+    unfiltered.remove('capabilities/capability.py')
+    unfiltered.remove('capabilities/__init__.py')
+    for item in unfiltered:
+        listOfCapabilities.append(item.replace('/', '.').replace('.py', ''))
+    return listOfCapabilities

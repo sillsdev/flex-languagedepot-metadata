@@ -16,6 +16,6 @@ class tasks(capability):
         dbConn.commit() # save changes to db
 
     def getColumns():
-        return 'numberOfRevisions'
+        return ['numberOfRevisions','int']
 
     # end of tasks

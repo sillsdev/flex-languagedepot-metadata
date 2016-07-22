@@ -23,6 +23,6 @@ class tasks(capability):
         dbConn.commit() # save changes to db
 
     def getColumns():
-        return 'createdDate'
+        return ['createdDate','date']
 
     # end of tasks
