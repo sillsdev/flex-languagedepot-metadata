@@ -14,10 +14,12 @@ A python script to collect FLEx metadata from a list of local project folders an
 * [PostgreSQL](https://www.postgresql.org/) (tested with 9.4, 9.5)
 * [psycopg2](http://initd.org/psycopg/)
 
-### Setup
+### Quickstart
 
 - run src/getDependences.sh to automate installing the above dependencies with apt-get
 - run src/setupPostgresql.sh to automate creating a role for the database we'll use
+- run src/createDb.sh to initialize the database
+- run src/runAnalysis.py to start analyzing the data
 
 Note: make sure you have set up your `postgres` user with a database usage password. By default, it will not have a password, and you will need to do this before proceeding. You will also need to be running a user with `createdb` and `dropdb` permissions in postgresql; `postgres` will have these already.
 
