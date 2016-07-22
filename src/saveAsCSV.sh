@@ -1,2 +1,3 @@
 # makes a csv
-echo "\copy (SELECT * FROM project.metadata) TO '/home/daniel/test1.csv' WITH (FORMAT CSV);" | psql languagedepot-metadata
+echo Exporting table project.metadata to file export.csv
+psql languagedepot-metadata -c "\copy (SELECT * FROM project.metadata) TO STDOUT WITH (FORMAT CSV)" > export.csv

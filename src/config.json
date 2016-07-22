@@ -1,6 +1,6 @@
 {
   "host":"localhost",
   "dbname":"languagedepot-metadata",
-  "user":"postgres",
+  "user":"chris",
   "password":"placeholder"
 }
