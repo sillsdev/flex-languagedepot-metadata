@@ -16,14 +16,25 @@ A python script to collect FLEx metadata from a list of local project folders an
 
 ### Quickstart
 
-- run src/getDependences.sh to automate installing the above dependencies with apt-get
-- run src/setupPostgresql.sh to automate creating a role for the database we'll use
-- run src/createDb.sh to initialize the database
-- run src/runAnalysis.py to start analyzing the data
+- run `src/getDependences.sh` to automate installing the above dependencies with apt-get
+- run `src/setupPostgresql.sh` to automate creating a role for the database we'll use
+- run `src/createDb.sh` to initialize the database
+- run `src/runAnalysis.py` to start analyzing the data
 
-Note: make sure you have set up your `postgres` user with a database usage password. By default, it will not have a password, and you will need to do this before proceeding. You will also need to be running a user with `createdb` and `dropdb` permissions in postgresql; `postgres` will have these already.
+### Detailed Setup
 
-Place all the folders you wish to scan in a single directory. Make a config file with the token 'password', which contains your user password for `postgres`. You may place the config file wherever you like.
+The first step is to set up a PostgreSQL user with permissions to add and remove databases. `setupPostgresql.sh` will do this for you, using credentials from the account currently signed in. If you wish to create the account yourself, however, that is also perfectly fine.
+
+The next step is to create a configuration file. Place the following tokens in the file:
+```
+{
+"host":"localhost", // must not be changed
+"dbname":"languagedepot-metadata", // can be changed, however, you cannot run 'createdb.sh' on other databases
+"username":"postgres",
+"password":"placeholder"
+}
+```
+Place the config file wherever you like.
 
 Download (or clone) the repository to any given folder. Once done, move to the `src` directory, and open `runAnalysis.py` in a text editor. Replace the variables `cfgName` and `dataPath` with the full paths to your configuration file and data folder, respectively:
 ```python
@@ -34,7 +45,7 @@ run `createDb.sh`:
 ```
 $ ./createDb.sh
 ```
-This file can both create the database and remove previously made ones with the same name.
+This file can both create the database and remove the database if it's already been made.
 
 ### Usage
 
@@ -42,9 +53,16 @@ in the `src` folder, run `runAnalysis.py`:
 ```
 $ ./runAnalysis.py
 ```
-If your project has only an initial commit, you may get some output from the shell:
+Your output may look like this:
 ```
+my-flex-project: Scanning in process
+my-flex-project: Scanned!
+```
+If your project only has an initial commit, you may get some extra output from the shell:
+```
+another-flex: Scanning in process
 abort: unknown revision '1'!
+another-flex: Scanned!
 ```
 However, your data will still be added to the database.
 
