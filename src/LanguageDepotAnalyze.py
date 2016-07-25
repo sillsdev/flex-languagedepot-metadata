@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import sys
+import traceback
 import os
 import glob
 import json # data type no.1
@@ -67,7 +68,14 @@ class Runner(object):
             # Analyzer needs to pass rootProjectFolder as a parameter
             # so that the directory can be cropped out of the name later
             analyzer = Analyze(folder, rootProjectFolder)
-            analyzer.run(usrhost, databse, usrname, usrpasswd)
+            try:
+                analyzer.run(usrhost, databse, usrname, usrpasswd)
+            except Exception:
+                print("Unfortunately, %s had a problem:\n" % folder)
+                print("-"*60)
+                traceback.print_exc(file=sys.stdout)
+                print("-"*60)
+                print("Moving on...\n\n")
 
     # end of Runner class
 
@@ -85,7 +93,7 @@ class Analyze(object):
         conn_string = 'host=%s dbname=%s user=%s password=%s' % (host, db, usr, passwd)
         try:
             conn = psycopg2.connect(conn_string)
-        except:
+        except Exception:
             print('Incorrect Credentials.')
             return
 

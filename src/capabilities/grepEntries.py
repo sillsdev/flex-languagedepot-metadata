@@ -107,7 +107,7 @@ class tasks(capability):
             textTagCount = subprocess.check_output( 'grep -r "<TextTag" %s | wc -l' \
             % quote(projectPath), shell=True).decode('utf-8')
 
-        except:
+        except Exception:
             print('Error!!! a command went wrong...')
         else:
             return [
