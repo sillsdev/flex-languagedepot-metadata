@@ -1,0 +1,6 @@
+{
+  "host":"localhost",
+  "dbname":"languagedepot-metadata",
+  "user":"chris",
+  "password":"placeholder"
+}
