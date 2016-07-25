@@ -28,8 +28,8 @@ The first step is to set up a PostgreSQL user with permissions to add and remove
 The next step is to create a configuration file. Place the following tokens in the file:
 ```json
 {
-"host":"localhost", # must not be changed
-"dbname":"languagedepot-metadata", # can be changed, however, you cannot run 'createdb.sh' on other databases
+"host":"localhost", // must not be changed
+"dbname":"languagedepot-metadata", // can be changed, however, you cannot run 'createdb.sh' on other databases
 "username":"postgres",
 "password":"placeholder"
 }
