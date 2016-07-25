@@ -26,7 +26,7 @@ A python script to collect FLEx metadata from a list of local project folders an
 The first step is to set up a PostgreSQL user with permissions to add and remove databases. `setupPostgresql.sh` will do this for you, using credentials from the account currently signed in. If you wish to create the account yourself, however, that is also perfectly fine.
 
 The next step is to create a configuration file. Place the following tokens in the file:
-```json
+```
 {
 "host":"localhost", // must not be changed
 "dbname":"languagedepot-metadata", // can be changed, however, you cannot run 'createdb.sh' on other databases
