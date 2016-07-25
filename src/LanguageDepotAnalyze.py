@@ -67,7 +67,7 @@ class Runner(object):
             # Analyzer needs to pass rootProjectFolder as a parameter
             # so that the directory can be cropped out of the name later
             analyzer = Analyze(folder, rootProjectFolder)
-            analyzer.run(usrpasswd)
+            analyzer.run(usrhost, databse, usrname, usrpasswd)
 
     # end of Runner class
 
@@ -80,28 +80,38 @@ class Analyze(object):
         self.name = hgdir[len(parentDirs):]
         self.hgdir = hgdir
 
-    def run(self, password):
+    def run(self, host, db, usr, passwd):
         # make connection to database
-        conn_string = 'host=%s dbname=%s user=%s password=%s' % (usrhost, databse, usrname, usrpasswd)
+        conn_string = 'host=%s dbname=%s user=%s password=%s' % (host, db, usr, passwd)
         try:
             conn = psycopg2.connect(conn_string)
         except:
             print('Incorrect Credentials.')
             return
 
-        # insert name into database, this creates a row we can use later
+        # check if the project is already entered into the database, otherwise continue as normal
         curs = conn.cursor()
-        curs.execute( "INSERT INTO project.metadata (name) VALUES (%s);", (self.name,) )
-        conn.commit()
+        curs.execute( "SELECT name FROM project.metadata;" ) # prompts the database to send data
+        entries = curs.fetchall() # but this command is actually what retrives the data???
+        if ( (self.name,) in entries ):
+            print ( '%s: Already scanned. Moving on...' % self.name)
+            return
+        else:
+            print ( '%s: Scanning in process' % self.name)
+            # insert name into database, this creates a row we can use later
+            curs.execute( "INSERT INTO project.metadata (name) VALUES (%s);", (self.name,) )
+            conn.commit()
 
-        listOfCapabilities = getListOfCapabilities()
-        # import a capability module from the list
-        # use a capability to get data from the project, then add that data
-        # to the row received from before
-        for capabilityName in listOfCapabilities:
-            capabilityModule = import_module(capabilityName)
-            result = capabilityModule.tasks.analyze(self.hgdir)
-            capabilityModule.tasks.updateDb(conn, self.name, result)
+            listOfCapabilities = getListOfCapabilities()
+            # import a capability module from the list
+            # use a capability to get data from the project, then add that data
+            # to the row received from before
+            for capabilityName in listOfCapabilities:
+                capabilityModule = import_module(capabilityName)
+                result = capabilityModule.tasks.analyze(self.hgdir)
+                capabilityModule.tasks.updateDb(conn, self.name, result)
+
+            print( '%s: Scanned!' % self.name)
 
         # end of run()
 
