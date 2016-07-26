@@ -123,7 +123,7 @@ class Analyze(object):
                 result = capabilityModule.tasks.analyze(self.hgdir)
                 capabilityModule.tasks.updateDb(conn, self.name, result)
 
-            # the scan is done!
+            # make an if statement here checking if all the data is filled for every column
             curs.execute( "UPDATE project.metadata SET scanDone = %s WHERE name = %s;", (True, self.name) )
             conn.commit()
             print('Done!')
