@@ -14,7 +14,7 @@ class tasks(capability):
             tree = ET.parse(lex)
             root = tree.getroot()
             # scan
-            for text in root.findall('Text'):
+            for text in root.iter('Text'):
                 texts+=1
 
         return texts
