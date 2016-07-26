@@ -47,6 +47,8 @@ def main():
         else:
             print ( 'please insert a type for each element.' )
             return
+    # this element must be last, it tells the program if the file is done scanning
+    listOfElements.append(['scanDone', 'boolean'])
 
     # SQL string variables
     schema = ['-- create schemas\n',

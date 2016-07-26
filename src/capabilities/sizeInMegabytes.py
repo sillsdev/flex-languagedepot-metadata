@@ -7,11 +7,11 @@ class tasks(capability):
     # the standard command for getting folder size is filtered down to the mere number
     def analyze(projectPath):
         catch = subprocess.check_output( 'du -hcs %s | sed "2q;d"' % \
-        quote(projectPath), shell=True ).decode('utf-8')
+        quote(projectPath), shell=True ).decode('utf-8').strip('M\ttotal\n')
         if ('K' in catch):
             return 1
         else:
-            return int( catch.strip('M\ttotal\n') )
+            return int(round(float(catch)))
 
     def updateDb(dbConn, py_name, value):
         # print(py_name +" "+ value)

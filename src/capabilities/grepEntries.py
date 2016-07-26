@@ -7,7 +7,7 @@ class tasks(capability):
 
     # various xml tags are grabbed with the grep command:
     def analyze(projectPath):
-        if( glob.glob('%s/Linguistics/Lexicon/Lexicon_**.lexdb' % projectPath) ):
+        if( not glob.glob('%s/Linguistics/Lexicon/Lexicon_**.lexdb' % projectPath) ):
             return [None, None, None, None, None, None, None, None, None, None, None, None,
             None, None, None, None, None, None, None, None, None, None, None, None, None]
         else:

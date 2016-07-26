@@ -101,15 +101,16 @@ class Analyze(object):
     def run(self, conn):
         # check if the project is already entered into the database, otherwise continue as normal
         curs = conn.cursor()
-        curs.execute( "SELECT name FROM project.metadata;" ) # prompts the database to send data
-        entries = curs.fetchall() # but this command is actually what retrives the data???
-        if ( (self.name,) in entries ):
-            # change this later so that it checks if it's completely filled out
+        curs.execute( "SELECT scanDone FROM project.metadata WHERE name = %s;", (self.name,) )
+        entries = curs.fetchall()
+        if ( True in entries ):
             print ( '\nAlready scanned. Moving on...' )
             return
         else:
             # insert name into database, this creates a row we can use later
             curs.execute( "INSERT INTO project.metadata (name) VALUES (%s);", (self.name,) )
+            curs.execute( "UPDATE project.metadata SET projectCode = %s WHERE name = %s;",
+            (self.name, self.name) )
             conn.commit()
 
             listOfCapabilities = getListOfCapabilities()
@@ -122,6 +123,9 @@ class Analyze(object):
                 result = capabilityModule.tasks.analyze(self.hgdir)
                 capabilityModule.tasks.updateDb(conn, self.name, result)
 
+            # the scan is done!
+            curs.execute( "UPDATE project.metadata SET scanDone = %s WHERE name = %s;", (True, self.name) )
+            conn.commit()
             print('Done!')
 
         # end of run()
