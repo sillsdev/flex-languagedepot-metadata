@@ -141,12 +141,30 @@ class tasks(capability):
                 print('Error!!! a command went wrong...')
             else:
                 return [
-                int(lexEntryCount), int(lexSenseCount), int(lexPronunciationCount), int(lexExampleSentenceCount),
-                int(lexReferenceCount), int(lexEntryRefCount), int(reversalIndexCount), int(reversalIndexEntryCount),
-                int(scrBookCount), int(scrSectionCount), int(scrTextParaCount), int(wfiWordformCount),
-                int(wfiAnalysisCount), int(wfiGlossCount), int(wfiMorphBundleCount), int(segmentCount),
-                int(stTxtParaCount), int(rnGenericRecCount), int(cmFileCount), int(cmPictureCount),
-                int(constChartRowCount), int(constChartTagCount), int(dsChartCount), int(textTagCount)
+                int(lexEntryCount),
+                int(lexSenseCount),
+                int(lexPronunciationCount),
+                int(lexExampleSentenceCount),
+                int(lexReferenceCount),
+                int(lexEntryRefCount),
+                int(reversalIndexCount),
+                int(reversalIndexEntryCount),
+                int(scrBookCount),
+                int(scrSectionCount),
+                int(scrTextParaCount),
+                int(wfiWordformCount),
+                int(wfiAnalysisCount),
+                int(wfiGlossCount),
+                int(wfiMorphBundleCount),
+                int(segmentCount),
+                int(stTxtParaCount),
+                int(rnGenericRecCount),
+                int(cmFileCount),
+                int(cmPictureCount),
+                int(constChartRowCount),
+                int(constChartTagCount),
+                int(dsChartCount),
+                int(textTagCount)
                 ]
             #
 
@@ -154,13 +172,31 @@ class tasks(capability):
 
     def updateDb(dbConn, py_name, value):
         cur = dbConn.cursor() # cursor to make changes
-        cur.execute( """UPDATE project.metadata
-        SET classCount_lexEntry = %s, classCount_lexSense = %s, classCount_lexPronunciation = %s, classCount_lexExampleSentence = %s,
-        classCount_lexReference = %s, classCount_lexEntryRef = %s, classCount_reversalIndex = %s, classCount_reversalIndexEntry = %s,
-        classCount_scrBook = %s, classCount_scrSection = %s, classCount_scrTextPara = %s, classCount_wfiWordform = %s,
-        classCount_wfiAnalysis = %s, classCount_wfiGloss = %s, classCount_wfiMorphBundle = %s, classCount_segment = %s,
-        classCount_stTxtPara = %s, classCount_rnGenericRec = %s, classCount_cmFile = %s, classCount_cmPicture = %s,
-        classCount_constChartRow = %s, classCount_constChartTag = %s, classCount_dsChart = %s, classCount_textTag = %s
+        cur.execute( """UPDATE project.metadata SET
+        classCount_lexEntry = %s,
+        classCount_lexSense = %s,
+        classCount_lexPronunciation = %s,
+        classCount_lexExampleSentence = %s,
+        classCount_lexReference = %s,
+        classCount_lexEntryRef = %s,
+        classCount_reversalIndex = %s,
+        classCount_reversalIndexEntry = %s,
+        classCount_scrBook = %s,
+        classCount_scrSection = %s,
+        classCount_scrTextPara = %s,
+        classCount_wfiWordform = %s,
+        classCount_wfiAnalysis = %s,
+        classCount_wfiGloss = %s,
+        classCount_wfiMorphBundle = %s,
+        classCount_segment = %s,
+        classCount_stTxtPara = %s,
+        classCount_rnGenericRec = %s,
+        classCount_cmFile = %s,
+        classCount_cmPicture = %s,
+        classCount_constChartRow = %s,
+        classCount_constChartTag = %s,
+        classCount_dsChart = %s,
+        classCount_textTag = %s
         WHERE name = %s;""",
         (value[0], value[1], value[2], value[3], value[4], value[5], value[6], value[7], value[8], value[9],
         value[10], value[11], value[12], value[13], value[14], value[15], value[16], value[17], value[18],
@@ -168,9 +204,29 @@ class tasks(capability):
         dbConn.commit() # save changes to db
 
     def getColumns(): # this is synonymous with the lists in updateDb() and analyze()'s return!
-        return [ ['classCount_lexEntry', 'int'], ['classCount_lexSense', 'int'], ['classCount_lexPronunciation', 'int'], ['classCount_lexExampleSentence', 'int'],
-         ['classCount_lexReference', 'int'], ['classCount_lexEntryRef', 'int'], ['classCount_reversalIndex', 'int'], ['classCount_reversalIndexEntry', 'int'],
-         ['classCount_scrBook', 'int'], ['classCount_scrSection', 'int'], ['classCount_scrTextPara', 'int'], ['classCount_wfiWordform', 'int'],
-         ['classCount_wfiAnalysis', 'int'], ['classCount_wfiGloss', 'int'], ['classCount_wfiMorphBundle', 'int'], ['classCount_segment', 'int'],
-         ['classCount_stTxtPara', 'int'], ['classCount_rnGenericRec', 'int'], ['classCount_cmFile', 'int'], ['classCount_cmPicture', 'int'],
-         ['classCount_constChartRow', 'int'], ['classCount_constChartTag', 'int'], ['classCount_dsChart', 'int'], ['classCount_textTag', 'int'] ]
+        return [
+        ['classCount_lexEntry', 'int'],
+        ['classCount_lexSense', 'int'],
+        ['classCount_lexPronunciation', 'int'],
+        ['classCount_lexExampleSentence', 'int'],
+        ['classCount_lexReference', 'int'],
+        ['classCount_lexEntryRef', 'int'],
+        ['classCount_reversalIndex', 'int'],
+        ['classCount_reversalIndexEntry', 'int'],
+        ['classCount_scrBook', 'int'],
+        ['classCount_scrSection', 'int'],
+        ['classCount_scrTextPara', 'int'],
+        ['classCount_wfiWordform', 'int'],
+        ['classCount_wfiAnalysis', 'int'],
+        ['classCount_wfiGloss', 'int'],
+        ['classCount_wfiMorphBundle', 'int'],
+        ['classCount_segment', 'int'],
+        ['classCount_stTxtPara', 'int'],
+        ['classCount_rnGenericRec', 'int'],
+        ['classCount_cmFile', 'int'],
+        ['classCount_cmPicture', 'int'],
+        ['classCount_constChartRow', 'int'],
+        ['classCount_constChartTag', 'int'],
+        ['classCount_dsChart', 'int'],
+        ['classCount_textTag', 'int']
+        ]
