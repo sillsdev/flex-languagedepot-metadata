@@ -15,8 +15,14 @@ class tasks(capability):
         # print(py_name +" "+ value)
         cur = dbConn.cursor() # cursor to make changes
         cur.execute( """UPDATE project.metadata
-            SET committerNames = %s, committerNumber = %s WHERE name = %s;""", (value[0], value[1], py_name) )
+            SET
+            committerNames = %s,
+            committerNumber = %s
+            WHERE name = %s;""", (value[0], value[1], py_name) )
         dbConn.commit() # save changes to db
 
     def getColumns():
-        return [['committerNames', 'text'], ['committerNumber', 'int']]
+        return [
+        ['committerNames', 'text'],
+        ['committerNumber', 'int']
+        ]

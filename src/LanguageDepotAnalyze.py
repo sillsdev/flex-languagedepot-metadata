@@ -58,18 +58,27 @@ class Runner(object):
         if ( not "usrpasswd" in globals() or not "usrname" in globals() or not "databse" in globals() or not "usrhost" in globals() ):
             print ('Not enough credentials.')
             return
+        # now it connects to the database, to see if they're correct
+        conn_string = 'host=%s dbname=%s user=%s password=%s' % (usrhost, databse, usrname, usrpasswd)
+        try:
+            conn = psycopg2.connect(conn_string)
+        except Exception:
+            print('Incorrect Credentials.')
+            return
+
         # find all files/folders in root folder
         files = glob.glob(rootProjectFolder + '*')
         files.sort()
-        listOfProjects = filter(lambda f: os.path.isdir(f), files)
-        # print (listOfProjects)
+        listOfProjects = [ f for f in files if os.path.isdir(f) ]
+        numOfProjects = len(listOfProjects)
 
         for folder in listOfProjects:
+            fldrIndex = listOfProjects.index(folder)
             # Analyzer needs to pass rootProjectFolder as a parameter
             # so that the directory can be cropped out of the name later
-            analyzer = Analyze(folder, rootProjectFolder)
+            analyzer = Analyze(folder, rootProjectFolder, fldrIndex, numOfProjects)
             try:
-                analyzer.run(usrhost, databse, usrname, usrpasswd)
+                analyzer.run(conn)
             except Exception:
                 print("Unfortunately, %s had a problem:\n" % folder)
                 print("-"*60)
@@ -83,31 +92,25 @@ class Runner(object):
 
 class Analyze(object):
     """retrieve various valuable pieces of information"""
-    def __init__(self, hgdir, parentDirs):
+    def __init__(self, hgdir, parentDirs, current, totalNumber):
         # to get the project name, we take the complete directory sans the parent directories
         self.name = hgdir[len(parentDirs):]
         self.hgdir = hgdir
+        print( '(%s/%s) Scanning %s' % (current+1, totalNumber, self.name), end='' )
 
-    def run(self, host, db, usr, passwd):
-        # make connection to database
-        conn_string = 'host=%s dbname=%s user=%s password=%s' % (host, db, usr, passwd)
-        try:
-            conn = psycopg2.connect(conn_string)
-        except Exception:
-            print('Incorrect Credentials.')
-            return
-
+    def run(self, conn):
         # check if the project is already entered into the database, otherwise continue as normal
         curs = conn.cursor()
-        curs.execute( "SELECT name FROM project.metadata;" ) # prompts the database to send data
-        entries = curs.fetchall() # but this command is actually what retrives the data???
-        if ( (self.name,) in entries ):
-            print ( '%s: Already scanned. Moving on...' % self.name)
+        curs.execute( "SELECT scanDone FROM project.metadata WHERE name = %s;", (self.name,) )
+        entries = curs.fetchall()
+        if ( True in entries ):
+            print ( '\nAlready scanned. Moving on...' )
             return
         else:
-            print ( '%s: Scanning in process' % self.name)
             # insert name into database, this creates a row we can use later
             curs.execute( "INSERT INTO project.metadata (name) VALUES (%s);", (self.name,) )
+            curs.execute( "UPDATE project.metadata SET projectCode = %s WHERE name = %s;",
+            (self.name, self.name) )
             conn.commit()
 
             listOfCapabilities = getListOfCapabilities()
@@ -116,10 +119,14 @@ class Analyze(object):
             # to the row received from before
             for capabilityName in listOfCapabilities:
                 capabilityModule = import_module(capabilityName)
+                print('.', end='')
                 result = capabilityModule.tasks.analyze(self.hgdir)
                 capabilityModule.tasks.updateDb(conn, self.name, result)
 
-            print( '%s: Scanned!' % self.name)
+            # make an if statement here checking if all the data is filled for every column
+            curs.execute( "UPDATE project.metadata SET scanDone = %s WHERE name = %s;", (True, self.name) )
+            conn.commit()
+            print('Done!')
 
         # end of run()
 

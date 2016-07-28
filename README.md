@@ -55,14 +55,12 @@ $ ./runAnalysis.py
 ```
 Your output may look like this:
 ```
-my-flex-project: Scanning in process
-my-flex-project: Scanned!
+(2/3): Scanning my-flex-project.......Done!
 ```
 If your project only has an initial commit, you may get some extra output from the shell:
 ```
-another-flex: Scanning in process
 abort: unknown revision '1'!
-another-flex: Scanned!
+(3/3): Scanning another-flex.......Done!
 ```
 However, your data will still be added to the database.
 
