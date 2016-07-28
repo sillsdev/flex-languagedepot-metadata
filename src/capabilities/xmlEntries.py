@@ -8,27 +8,40 @@ class tasks(capability):
     # searches every xml file in the lexicon for <Text> tags
     # finds each file in the folder, parses it, and looks for the tag however many times
     def analyze(projectPath):
-        # vernacular writing systems
-        alphabet = {}
+        # analysis & vernacular writing systems
+        analysis = {}
+        vernacular = {}
         if glob.glob('%s/General/LanguageProject.langproj' % projectPath):
             vtree = ET.parse('%s/General/LanguageProject.langproj' % projectPath)
             vroot = vtree.getroot()
-
-            alphabet[ vroot.find('.//CurAnalysisWss/Uni').text.split(' ')[0] ] = []
+            # analysis
             try:
-                vroot.find('.//CurAnalysisWss/Uni').text.split(' ')[1]
+                vroot.find('.//CurAnalysisWss/Uni').text.split(' ')[0]
             except(IndexError):
                 pass
             else:
-                alphabet[ vroot.find('.//CurAnalysisWss/Uni').text.split(' ')[1] ] = []
-
-            alphabet[ vroot.find('.//CurVernWss/Uni').text.split(' ')[0] ] = []
+                analysis[ vroot.find('.//CurAnalysisWss/Uni').text.split(' ')[0] ] = []
+                try:
+                    vroot.find('.//CurAnalysisWss/Uni').text.split(' ')[1]
+                except(IndexError):
+                    pass
+                else:
+                    analysis[ vroot.find('.//CurAnalysisWss/Uni').text.split(' ')[1] ] = []
+            # vernacular
             try:
-                vroot.find('.//CurVernWss/Uni').text.split(' ')[1]
+                vroot.find('.//CurVernWss/Uni').text.split(' ')[0]
             except(IndexError):
                 pass
             else:
-                alphabet[ vroot.find('.//CurVernWss/Uni').text.split(' ')[1] ] = []
+                vernacular[ vroot.find('.//CurVernWss/Uni').text.split(' ')[0] ] = []
+                try:
+                    vroot.find('.//CurVernWss/Uni').text.split(' ')[1]
+                except(IndexError):
+                    pass
+                else:
+                    vernacular[ vroot.find('.//CurVernWss/Uni').text.split(' ')[1] ] = []
+
+            # end of analysis & vernacular check
 
         # Lexicon
         texts = 0
@@ -47,133 +60,121 @@ class tasks(capability):
                 for tag in root.iter('Str'):
                     ws = tag.get('ws')
                     # check if the writing system is in the inventory or not
-                    if ws in alphabet:
+                    if ws in analysis:
                         # won't return None automatically
                         if tag.text:
-                            for letter in tag.text.strip():
-                                # check if all the letters are in the writing system's list
-                                if letter not in alphabet[ws]:
-                                    alphabet[ws].append(letter)
+                            # add a letter to the writing system if it's not there already
+                            analysis[ws] = [ letter for letter in tag.text.strip() if letter not in analysis[ws] ]
+                    if ws in vernacular:
+                        # won't return None automatically
+                        if tag.text:
+                            # add a letter to the writing system if it's not there already
+                            vernacular[ws] = [ letter for letter in tag.text.strip() if letter not in vernacular[ws] ]
 
                 for tag in root.iter('Uni'):
                     ws = tag.get('ws')
                     # check if the writing system is in the inventory or not
-                    if ws in alphabet:
+                    if ws in analysis:
                         # won't return None automatically
                         if tag.text:
-                            for letter in tag.text.strip():
-                                # check if all the letters are in the writing system's list
-                                if letter not in alphabet[ws]:
-                                    alphabet[ws].append(letter)
+                            # add a letter to the writing system if it's not there already
+                            analysis[ws] = [ letter for letter in tag.text.strip() if letter not in analysis[ws] ]
+                    if ws in vernacular:
+                        # won't return None automatically
+                        if tag.text:
+                            # add a letter to the writing system if it's not there already
+                            vernacular[ws] = [ letter for letter in tag.text.strip() if letter not in vernacular[ws] ]
 
                 for tag in root.iter('AUni'):
                     ws = tag.get('ws')
                     # check if the writing system is in the inventory or not
-                    if ws in alphabet:
+                    if ws in analysis:
                         # won't return None automatically
                         if tag.text:
-                            for letter in tag.text.strip():
-                                # check if all the letters are in the writing system's list
-                                if letter not in alphabet[ws]:
-                                    alphabet[ws].append(letter)
+                            # add a letter to the writing system if it's not there already
+                            analysis[ws] = [ letter for letter in tag.text.strip() if letter not in analysis[ws] ]
+                    if ws in vernacular:
+                        # won't return None automatically
+                        if tag.text:
+                            # add a letter to the writing system if it's not there already
+                            vernacular[ws] = [ letter for letter in tag.text.strip() if letter not in vernacular[ws] ]
 
                 # end of writing system check
 
             # end of lexicon check
 
+        dataList = [
+        texts,
+        '', # key for first analysis alphabet
+        [], # value for first analysis alphabet
+        '', # key for second analysis alphabet
+        [], # value for second analysis alphabet
+        '', # key for first vernacular alphabet
+        [], # value for first vernacular alphabet
+        '', # key for second vernacular alphabet
+        [], # value for second vernacular alphabet
+        ]
+
         try:
-            list(alphabet.keys())[0]
+            list(analysis.keys())[0]
         except(IndexError):
-            return [
-            texts,
-            # lexentries,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None,
-            None
-            ]
+            pass
         else:
+            dataList[1] = list(analysis.keys())[0]
+            dataList[2] = list(analysis.values())[0]
             try:
-                list(alphabet.keys())[1]
+                list(analysis.keys())[1]
             except(IndexError):
-                return [
-                texts,
-                # lexentries,
-                list(alphabet.keys())[0],
-                list(alphabet.values())[0],
-                None,
-                None,
-                None,
-                None,
-                None,
-                None
-                ]
+                pass
             else:
-                try:
-                    list(alphabet.keys())[2]
-                except(IndexError):
-                    return [
-                    texts,
-                    # lexentries,
-                    list(alphabet.keys())[0],
-                    list(alphabet.values())[0],
-                    list(alphabet.keys())[1],
-                    list(alphabet.values())[1],
-                    None,
-                    None,
-                    None,
-                    None,
-                    ]
-                else:
-                    try:
-                        list(alphabet.keys())[3]
-                    except(IndexError):
-                        return [
-                        texts,
-                        # lexentries,
-                        list(alphabet.keys())[0],
-                        list(alphabet.values())[0],
-                        list(alphabet.keys())[1],
-                        list(alphabet.values())[1],
-                        list(alphabet.keys())[2],
-                        list(alphabet.values())[2],
-                        None,
-                        None,
-                        ]
-                    else:
-                        return [
-                        texts,
-                        # lexentries,
-                        list(alphabet.keys())[0],
-                        list(alphabet.values())[0],
-                        list(alphabet.keys())[1],
-                        list(alphabet.values())[1],
-                        list(alphabet.keys())[2],
-                        list(alphabet.values())[2],
-                        list(alphabet.keys())[3],
-                        list(alphabet.values())[3],
-                        ]
+                dataList[3] = list(analysis.keys())[1]
+                dataList[4] = list(analysis.values())[1]
+        try:
+            list(vernacular.keys())[0]
+        except(IndexError):
+            pass
+        else:
+            dataList[5] = list(vernacular.keys())[0]
+            dataList[6] = list(vernacular.values())[0]
+            try:
+                list(vernacular.keys())[1]
+            except(IndexError):
+                pass
+            else:
+                dataList[7] = list(vernacular.keys())[1]
+                dataList[8] = list(vernacular.values())[1]
+
+        # end of EAFP
+
+        return dataList
+
 
     def updateDb(dbConn, py_name, value):
         # lexEntry = %s,
         cur = dbConn.cursor() # cursor to make changes
         cur.execute( """UPDATE project.metadata SET
         classCount_text = %s,
+        analysis1_code = %s,
+        analysis1_characterInventory = %s,
+        analysis2_code = %s,
+        analysis2_characterInventory = %s,
         vernacular1_code = %s,
         vernacular1_characterInventory = %s,
         vernacular2_code = %s,
         vernacular2_characterInventory = %s
-        WHERE name = %s;""", (value[0], value[1], value[2], value[3], value[4], py_name) )
+        WHERE name = %s;""",
+        (value[0], value[1], value[2], value[3], value[4], value[5], value[6], value[7], value[8],
+        py_name) )
         dbConn.commit() # save changes to db
 
     def getColumns():
         return [
         ['classCount_text', 'int'],
         # ['lexEntry', 'int'],
+        ['analysis1_code', 'varchar(80)'],
+        ['analysis1_characterInventory', 'text[]'],
+        ['analysis2_code', 'varchar(80)'],
+        ['analysis2_characterInventory', 'text[]'],
         ['vernacular1_code', 'varchar(80)'],
         ['vernacular1_characterInventory', 'text[]'],
         ['vernacular2_code', 'varchar(80)'],
