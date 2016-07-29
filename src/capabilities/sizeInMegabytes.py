@@ -6,20 +6,38 @@ class tasks(capability):
 
     # the standard command for getting folder size is filtered down to the mere number
     def analyze(projectPath):
-        catch = subprocess.check_output( 'du -hcs %s | sed "2q;d"' % \
-        quote(projectPath), shell=True ).decode('utf-8').strip('M\ttotal\n')
-        if ('K' in catch):
-            return 1
-        else:
-            return int(round(float(catch)))
+        # total size
+        total1 = subprocess.check_output( 'du -mcs %s | sed "2q;d"' % \
+        quote(projectPath), shell=True ).decode('utf-8').strip('\ttotal\n')
+        total = int(round(float(total1)))
+
+        # project size
+        project1 = subprocess.check_output( 'du --exclude=.hg -mcs %s | sed "2q;d"' % \
+        quote(projectPath), shell=True ).decode('utf-8').strip('\ttotal\n')
+        project = int(round(float(project1)))
+
+        # mercurial repo size
+        hgsize1 = subprocess.check_output( 'du -mcs %s/.hg | sed "2q;d"' % \
+        quote(projectPath), shell=True ).decode('utf-8').strip('\ttotal\n')
+        hgsize = int(round(float(hgsize1)))
+
+        return [total, project, hgsize]
 
     def updateDb(dbConn, py_name, value):
         # print(py_name +" "+ value)
         cur = dbConn.cursor() # cursor to make changes
-        cur.execute( "UPDATE project.metadata SET projectSizeInMB = %s WHERE name = %s;", (value, py_name) )
+        cur.execute( """UPDATE project.metadata SET
+        totalSizeInMB = %s,
+        projectSizeInMB = %s,
+        repoSizeInMB = %s
+        WHERE name = %s;""", (value[0], value[1], value[2], py_name) )
         dbConn.commit() # save changes to db
 
     def getColumns():
-        return ['projectSizeInMB','int']
+        return [
+        ['totalSizeInMB','int'],
+        ['projectSizeInMB', 'int'],
+        ['repoSizeInMB', 'int']
+        ]
 
     # end of tasks
