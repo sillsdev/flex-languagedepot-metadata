@@ -1,7 +1,7 @@
 from capabilities.capability import capability
+import os
 import glob
 import xml.etree.ElementTree as ET
-
 
 class tasks(capability):
 
@@ -27,6 +27,18 @@ class tasks(capability):
                     pass
                 else:
                     analysis[ vroot.find('.//CurAnalysisWss/Uni').text.split(' ')[1] ] = None
+                    try:
+                        vroot.find('.//CurAnalysisWss/Uni').text.split(' ')[2]
+                    except(IndexError):
+                        pass
+                    else:
+                        analysis[ vroot.find('.//CurAnalysisWss/Uni').text.split(' ')[2] ] = None
+                        try:
+                            vroot.find('.//CurAnalysisWss/Uni').text.split(' ')[3]
+                        except(IndexError):
+                            pass
+                        else:
+                            analysis[ vroot.find('.//CurAnalysisWss/Uni').text.split(' ')[3] ] = None
             # vernacular
             try:
                 vroot.find('.//CurVernWss/Uni').text.split(' ')[0]
@@ -40,6 +52,18 @@ class tasks(capability):
                     pass
                 else:
                     vernacular[ vroot.find('.//CurVernWss/Uni').text.split(' ')[1] ] = None
+                    try:
+                        vroot.find('.//CurVernWss/Uni').text.split(' ')[2]
+                    except(IndexError):
+                        pass
+                    else:
+                        vernacular[ vroot.find('.//CurVernWss/Uni').text.split(' ')[2] ] = None
+                        try:
+                            vroot.find('.//CurVernWss/Uni').text.split(' ')[3]
+                        except(IndexError):
+                            pass
+                        else:
+                            vernacular[ vroot.find('.//CurVernWss/Uni').text.split(' ')[3] ] = None
 
             # end of analysis & vernacular check
 
@@ -62,42 +86,54 @@ class tasks(capability):
                     # check if the writing system is in the inventory or not
                     if ws in analysis:
                         # add a letter to the writing system if it's not there already
-                        tempList = []
                         if tag.text: tempList = {x for x in tag.text.strip()}
-                        analysis[ws] = ''.join( sorted(tempList) )
+                        if analysis[ws] != None:
+                            analysis[ws].update(tempList)
+                        else:
+                            analysis[ws] = tempList
                     if ws in vernacular:
                         # add a letter to the writing system if it's not there already
-                        tempList = []
                         if tag.text: tempList = {x for x in tag.text.strip()}
-                        vernacular[ws] = ''.join( sorted(tempList) )
+                        if vernacular[ws] != None:
+                            vernacular[ws].update(tempList)
+                        else:
+                            vernacular[ws] = tempList
 
                 for tag in root.iter('Uni'):
                     ws = tag.get('ws')
                     # check if the writing system is in the inventory or not
                     if ws in analysis:
                         # add a letter to the writing system if it's not there already
-                        tempList = []
                         if tag.text: tempList = {x for x in tag.text.strip()}
-                        analysis[ws] = ''.join( sorted(tempList) )
+                        if analysis[ws] != None:
+                            analysis[ws].update(tempList)
+                        else:
+                            analysis[ws] = tempList
                     if ws in vernacular:
                         # add a letter to the writing system if it's not there already
-                        tempList = []
                         if tag.text: tempList = {x for x in tag.text.strip()}
-                        vernacular[ws] = ''.join( sorted(tempList) )
+                        if vernacular[ws] != None:
+                            vernacular[ws].update(tempList)
+                        else:
+                            vernacular[ws] = tempList
 
                 for tag in root.iter('AUni'):
                     ws = tag.get('ws')
                     # check if the writing system is in the inventory or not
                     if ws in analysis:
                         # add a letter to the writing system if it's not there already
-                        tempList = []
                         if tag.text: tempList = {x for x in tag.text.strip()}
-                        analysis[ws] = ''.join( sorted(tempList) )
+                        if analysis[ws] != None:
+                            analysis[ws].update(tempList)
+                        else:
+                            analysis[ws] = tempList
                     if ws in vernacular:
                         # add a letter to the writing system if it's not there already
-                        tempList = []
                         if tag.text: tempList = {x for x in tag.text.strip()}
-                        vernacular[ws] = ''.join( sorted(tempList) )
+                        if vernacular[ws] != None:
+                            vernacular[ws].update(tempList)
+                        else:
+                            vernacular[ws] = tempList
 
                 # end of writing system check
 
@@ -109,7 +145,8 @@ class tasks(capability):
         customStemCopy = 0
         customRootCopy = 0
         if glob.glob('%s/ConfigurationSettings/*' % projectPath):
-            listOfLayouts = glob.glob('%s/ConfigurationSettings/*' % projectPath)
+            dirfiles = glob.glob('%s/ConfigurationSettings/*' % projectPath)
+            listOfLayouts = [ f for f in dirfiles if not os.path.isdir(f)]
             for fwlayout in listOfLayouts:
                 tree = ET.parse(fwlayout)
                 root = tree.getroot()
@@ -132,7 +169,7 @@ class tasks(capability):
                         else:
                             customRootCount += 1
 
-            # end of layout check
+            # end of stem and root / layout config
 
 
         dataList = [
@@ -141,10 +178,18 @@ class tasks(capability):
         None, # value for first analysis alphabet
         None, # key for second analysis alphabet
         None, # value for second analysis alphabet
+        None, # key for third analysis alphabet
+        None, # value for third analysis alphabet
+        None, # key for fourth analysis alphabet
+        None, # value for fourth analysis alphabet
         None, # key for first vernacular alphabet
         None, # value for first vernacular alphabet
         None, # key for second vernacular alphabet
         None, # value for second vernacular alphabet
+        None, # key for third vernacular alphabet
+        None, # value for third vernacular alphabet
+        None, # key for fourth vernacular alphabet
+        None, # value for fourth vernacular alphabet
         customStemCount,
         customRootCount,
         customStemCopy,
@@ -153,32 +198,84 @@ class tasks(capability):
 
         try:
             list(analysis.keys())[0]
+            ''.join( list(analysis.values())[0] )
         except(IndexError):
+            pass
+        except(TypeError):
             pass
         else:
             dataList[1] = list(analysis.keys())[0]
-            dataList[2] = list(analysis.values())[0]
+            dataList[2] = ''.join( sorted( list(analysis.values())[0] ) )
             try:
                 list(analysis.keys())[1]
+                ''.join( list(analysis.values())[1] )
             except(IndexError):
+                pass
+            except(TypeError):
                 pass
             else:
                 dataList[3] = list(analysis.keys())[1]
-                dataList[4] = list(analysis.values())[1]
+                dataList[4] = ''.join( sorted( list(analysis.values())[1] ) )
+                try:
+                    list(analysis.keys())[2]
+                    ''.join( list(analysis.values())[2] )
+                except(IndexError):
+                    pass
+                except(TypeError):
+                    pass
+                else:
+                    dataList[5] = list(analysis.keys())[2]
+                    dataList[6] = ''.join( sorted( list(analysis.values())[2] ) )
+                    try:
+                        list(analysis.keys())[3]
+                        ''.join( list(analysis.values())[3] )
+                    except(IndexError):
+                        pass
+                    except(TypeError):
+                        pass
+                    else:
+                        dataList[7] = list(analysis.keys())[3]
+                        dataList[8] = ''.join( sorted( list(analysis.values())[3] ) )
         try:
             list(vernacular.keys())[0]
+            ''.join( list(vernacular.values())[0] )
         except(IndexError):
             pass
+        except(TypeError):
+            pass
         else:
-            dataList[5] = list(vernacular.keys())[0]
-            dataList[6] = list(vernacular.values())[0]
+            dataList[9] = list(vernacular.keys())[0]
+            dataList[10] = ''.join( sorted( list(vernacular.values())[0] ) )
             try:
                 list(vernacular.keys())[1]
+                ''.join( list(vernacular.values())[1] )
             except(IndexError):
                 pass
+            except(TypeError):
+                pass
             else:
-                dataList[7] = list(vernacular.keys())[1]
-                dataList[8] = list(vernacular.values())[1]
+                dataList[11] = list(vernacular.keys())[1]
+                dataList[12] = ''.join( sorted( list(vernacular.values())[1] ) )
+                try:
+                    list(vernacular.keys())[2]
+                    ''.join( list(vernacular.values())[2] )
+                except(IndexError):
+                    pass
+                except(TypeError):
+                    pass
+                else:
+                    dataList[13] = list(vernacular.keys())[2]
+                    dataList[14] = ''.join( sorted( list(vernacular.values())[2] ) )
+                    try:
+                        list(vernacular.keys())[3]
+                        ''.join( list(vernacular.values())[3] )
+                    except(IndexError):
+                        pass
+                    except(TypeError):
+                        pass
+                    else:
+                        dataList[15] = list(vernacular.keys())[3]
+                        dataList[16] = ''.join( sorted( list(vernacular.values())[3] ) )
 
         # end of EAFP
 
@@ -194,17 +291,26 @@ class tasks(capability):
         analysis1_characterInventory = %s,
         analysis2_code = %s,
         analysis2_characterInventory = %s,
+        analysis3_code = %s,
+        analysis3_characterInventory = %s,
+        analysis4_code = %s,
+        analysis4_characterInventory = %s,
         vernacular1_code = %s,
         vernacular1_characterInventory = %s,
         vernacular2_code = %s,
         vernacular2_characterInventory = %s,
+        vernacular3_code = %s,
+        vernacular3_characterInventory = %s,
+        vernacular4_code = %s,
+        vernacular4_characterInventory = %s,
         customStemConfigurationCount = %s,
         customRootConfigurationCount = %s,
         stemConfigurationCopyCount = %s,
         rootConfigurationCopyCount = %s
         WHERE name = %s;""",
-        (value[0], value[1], value[2], value[3], value[4], value[5], value[6], value[7],
-        value[8], value[9], value[10], value[11], value[12],
+        (value[0], value[1], value[2], value[3], value[4], value[5], value[6], value[7], value[8],
+        value[9], value[10], value[11], value[12], value[13], value[14], value[15], value[16],
+        value[17], value[18], value[19], value[20],
         py_name) )
         dbConn.commit() # save changes to db
 
@@ -216,10 +322,18 @@ class tasks(capability):
         ['analysis1_characterInventory', 'text'],
         ['analysis2_code', 'varchar(80)'],
         ['analysis2_characterInventory', 'text'],
+        ['analysis3_code', 'varchar(80)'],
+        ['analysis3_characterInventory', 'text'],
+        ['analysis4_code', 'varchar(80)'],
+        ['analysis4_characterInventory', 'text'],
         ['vernacular1_code', 'varchar(80)'],
         ['vernacular1_characterInventory', 'text'],
         ['vernacular2_code', 'varchar(80)'],
         ['vernacular2_characterInventory', 'text'],
+        ['vernacular3_code', 'varchar(80)'],
+        ['vernacular3_characterInventory', 'text'],
+        ['vernacular4_code', 'varchar(80)'],
+        ['vernacular4_characterInventory', 'text'],
         ['customStemConfigurationCount', 'int'],
         ['customRootConfigurationCount', 'int'],
         ['stemConfigurationCopyCount', 'int'],
