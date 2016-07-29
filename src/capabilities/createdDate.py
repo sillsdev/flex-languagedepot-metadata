@@ -9,7 +9,7 @@ class tasks(capability):
     def analyze(projectPath):
         try:
             catch = subprocess.check_output( 'cd %s && hg log -r 1 --template "{date|shortdate}"' \
-            % quote(projectPath), shell=True)
+            % quote(projectPath), shell=True, stderr=subprocess.DEVNULL)
         except(subprocess.CalledProcessError):
             return subprocess.check_output( 'cd %s && hg log -r 0 --template "{date|shortdate}"' \
             % quote(projectPath), shell=True).decode('utf-8')
