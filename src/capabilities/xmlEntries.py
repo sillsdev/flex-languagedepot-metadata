@@ -61,55 +61,79 @@ class tasks(capability):
                     ws = tag.get('ws')
                     # check if the writing system is in the inventory or not
                     if ws in analysis:
-                        if tag.text:
-                            # add a letter to the writing system if it's not there already
-                            tempList = []
-                            tempList = {x for x in tag.text.strip()}
-                            analysis[ws] = ''.join( sorted(tempList) )
+                        # add a letter to the writing system if it's not there already
+                        tempList = []
+                        if tag.text: tempList = {x for x in tag.text.strip()}
+                        analysis[ws] = ''.join( sorted(tempList) )
                     if ws in vernacular:
-                        if tag.text:
-                            # add a letter to the writing system if it's not there already
-                            tempList = []
-                            tempList = {x for x in tag.text.strip()}
-                            analysis[ws] = ''.join( sorted(tempList) )
+                        # add a letter to the writing system if it's not there already
+                        tempList = []
+                        if tag.text: tempList = {x for x in tag.text.strip()}
+                        vernacular[ws] = ''.join( sorted(tempList) )
 
                 for tag in root.iter('Uni'):
                     ws = tag.get('ws')
                     # check if the writing system is in the inventory or not
                     if ws in analysis:
-                        if tag.text:
-                            # add a letter to the writing system if it's not there already
-                            tempList = []
-                            tempList = {x for x in tag.text.strip()}
-                            analysis[ws] = ''.join( sorted(tempList) )
+                        # add a letter to the writing system if it's not there already
+                        tempList = []
+                        if tag.text: tempList = {x for x in tag.text.strip()}
+                        analysis[ws] = ''.join( sorted(tempList) )
                     if ws in vernacular:
-                        if tag.text:
-                            # add a letter to the writing system if it's not there already
-                            tempList = []
-                            tempList = {x for x in tag.text.strip()}
-                            analysis[ws] = ''.join( sorted(tempList) )
+                        # add a letter to the writing system if it's not there already
+                        tempList = []
+                        if tag.text: tempList = {x for x in tag.text.strip()}
+                        vernacular[ws] = ''.join( sorted(tempList) )
 
                 for tag in root.iter('AUni'):
                     ws = tag.get('ws')
                     # check if the writing system is in the inventory or not
                     if ws in analysis:
-                        # won't return None automatically
-                        if tag.text:
-                            # add a letter to the writing system if it's not there already
-                            tempList = []
-                            tempList = {x for x in tag.text.strip()}
-                            analysis[ws] = ''.join( sorted(tempList) )
+                        # add a letter to the writing system if it's not there already
+                        tempList = []
+                        if tag.text: tempList = {x for x in tag.text.strip()}
+                        analysis[ws] = ''.join( sorted(tempList) )
                     if ws in vernacular:
-                        # won't return None automatically
-                        if tag.text:
-                            # add a letter to the writing system if it's not there already
-                            tempList = []
-                            tempList = {x for x in tag.text.strip()}
-                            analysis[ws] = ''.join( sorted(tempList) )
+                        # add a letter to the writing system if it's not there already
+                        tempList = []
+                        if tag.text: tempList = {x for x in tag.text.strip()}
+                        vernacular[ws] = ''.join( sorted(tempList) )
 
                 # end of writing system check
 
             # end of lexicon check
+
+        # stem and root configuration
+        customStemCount = 0
+        customRootCount = 0
+        customStemCopy = 0
+        customRootCopy = 0
+        if glob.glob('%s/ConfigurationSettings/*' % projectPath):
+            listOfLayouts = glob.glob('%s/ConfigurationSettings/*' % projectPath)
+            for fwlayout in listOfLayouts:
+                tree = ET.parse(fwlayout)
+                root = tree.getroot()
+
+                for tag in root.iter('layout'):
+                    typeTag = tag.get('type')
+                    name = tag.get('name')
+
+                    # stem count and copy count
+                    if typeTag == 'jtview' and 'publishStem' in name:
+                        if name.replace('publishStem#', '') == int:
+                            customStemCopy += 1
+                        else:
+                            customRootCount += 1
+
+                    # root count and copy count
+                    if typeTag == 'jtview' and 'publishRoot' in name:
+                        if name.replace('publishRoot#', '') == int:
+                            customRootCopy += 1
+                        else:
+                            customRootCount += 1
+
+            # end of layout check
+
 
         dataList = [
         texts,
@@ -121,6 +145,10 @@ class tasks(capability):
         None, # value for first vernacular alphabet
         None, # key for second vernacular alphabet
         None, # value for second vernacular alphabet
+        customStemCount,
+        customRootCount,
+        customStemCopy,
+        customRootCopy
         ]
 
         try:
@@ -169,9 +197,14 @@ class tasks(capability):
         vernacular1_code = %s,
         vernacular1_characterInventory = %s,
         vernacular2_code = %s,
-        vernacular2_characterInventory = %s
+        vernacular2_characterInventory = %s,
+        customStemConfigurationCount = %s,
+        customRootConfigurationCount = %s,
+        stemConfigurationCopyCount = %s,
+        rootConfigurationCopyCount = %s
         WHERE name = %s;""",
-        (value[0], value[1], value[2], value[3], value[4], value[5], value[6], value[7], value[8],
+        (value[0], value[1], value[2], value[3], value[4], value[5], value[6], value[7],
+        value[8], value[9], value[10], value[11], value[12],
         py_name) )
         dbConn.commit() # save changes to db
 
@@ -186,5 +219,9 @@ class tasks(capability):
         ['vernacular1_code', 'varchar(80)'],
         ['vernacular1_characterInventory', 'text'],
         ['vernacular2_code', 'varchar(80)'],
-        ['vernacular2_characterInventory', 'text']
+        ['vernacular2_characterInventory', 'text'],
+        ['customStemConfigurationCount', 'int'],
+        ['customRootConfigurationCount', 'int'],
+        ['stemConfigurationCopyCount', 'int'],
+        ['rootConfigurationCopyCount', 'int']
         ]
