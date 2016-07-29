@@ -102,8 +102,8 @@ class Analyze(object):
         # check if the project is already entered into the database, otherwise continue as normal
         curs = conn.cursor()
         curs.execute( "SELECT scanDone FROM project.metadata WHERE name = %s;", (self.name,) )
-        entries = curs.fetchall()
-        if ( True in entries ):
+        entries = curs.fetchone()
+        if ( entries == (True,) ):
             print ( '\nAlready scanned. Moving on...' )
             return
         else:

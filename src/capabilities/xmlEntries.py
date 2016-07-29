@@ -20,26 +20,26 @@ class tasks(capability):
             except(IndexError):
                 pass
             else:
-                analysis[ vroot.find('.//CurAnalysisWss/Uni').text.split(' ')[0] ] = []
+                analysis[ vroot.find('.//CurAnalysisWss/Uni').text.split(' ')[0] ] = None
                 try:
                     vroot.find('.//CurAnalysisWss/Uni').text.split(' ')[1]
                 except(IndexError):
                     pass
                 else:
-                    analysis[ vroot.find('.//CurAnalysisWss/Uni').text.split(' ')[1] ] = []
+                    analysis[ vroot.find('.//CurAnalysisWss/Uni').text.split(' ')[1] ] = None
             # vernacular
             try:
                 vroot.find('.//CurVernWss/Uni').text.split(' ')[0]
             except(IndexError):
                 pass
             else:
-                vernacular[ vroot.find('.//CurVernWss/Uni').text.split(' ')[0] ] = []
+                vernacular[ vroot.find('.//CurVernWss/Uni').text.split(' ')[0] ] = None
                 try:
                     vroot.find('.//CurVernWss/Uni').text.split(' ')[1]
                 except(IndexError):
                     pass
                 else:
-                    vernacular[ vroot.find('.//CurVernWss/Uni').text.split(' ')[1] ] = []
+                    vernacular[ vroot.find('.//CurVernWss/Uni').text.split(' ')[1] ] = None
 
             # end of analysis & vernacular check
 
@@ -61,29 +61,33 @@ class tasks(capability):
                     ws = tag.get('ws')
                     # check if the writing system is in the inventory or not
                     if ws in analysis:
-                        # won't return None automatically
                         if tag.text:
                             # add a letter to the writing system if it's not there already
-                            analysis[ws] = [ letter for letter in tag.text.strip() if letter not in analysis[ws] ]
+                            tempList = []
+                            tempList = {x for x in tag.text.strip()}
+                            analysis[ws] = ''.join( sorted(tempList) )
                     if ws in vernacular:
-                        # won't return None automatically
                         if tag.text:
                             # add a letter to the writing system if it's not there already
-                            vernacular[ws] = [ letter for letter in tag.text.strip() if letter not in vernacular[ws] ]
+                            tempList = []
+                            tempList = {x for x in tag.text.strip()}
+                            analysis[ws] = ''.join( sorted(tempList) )
 
                 for tag in root.iter('Uni'):
                     ws = tag.get('ws')
                     # check if the writing system is in the inventory or not
                     if ws in analysis:
-                        # won't return None automatically
                         if tag.text:
                             # add a letter to the writing system if it's not there already
-                            analysis[ws] = [ letter for letter in tag.text.strip() if letter not in analysis[ws] ]
+                            tempList = []
+                            tempList = {x for x in tag.text.strip()}
+                            analysis[ws] = ''.join( sorted(tempList) )
                     if ws in vernacular:
-                        # won't return None automatically
                         if tag.text:
                             # add a letter to the writing system if it's not there already
-                            vernacular[ws] = [ letter for letter in tag.text.strip() if letter not in vernacular[ws] ]
+                            tempList = []
+                            tempList = {x for x in tag.text.strip()}
+                            analysis[ws] = ''.join( sorted(tempList) )
 
                 for tag in root.iter('AUni'):
                     ws = tag.get('ws')
@@ -92,12 +96,16 @@ class tasks(capability):
                         # won't return None automatically
                         if tag.text:
                             # add a letter to the writing system if it's not there already
-                            analysis[ws] = [ letter for letter in tag.text.strip() if letter not in analysis[ws] ]
+                            tempList = []
+                            tempList = {x for x in tag.text.strip()}
+                            analysis[ws] = ''.join( sorted(tempList) )
                     if ws in vernacular:
                         # won't return None automatically
                         if tag.text:
                             # add a letter to the writing system if it's not there already
-                            vernacular[ws] = [ letter for letter in tag.text.strip() if letter not in vernacular[ws] ]
+                            tempList = []
+                            tempList = {x for x in tag.text.strip()}
+                            analysis[ws] = ''.join( sorted(tempList) )
 
                 # end of writing system check
 
@@ -105,14 +113,14 @@ class tasks(capability):
 
         dataList = [
         texts,
-        '', # key for first analysis alphabet
-        [], # value for first analysis alphabet
-        '', # key for second analysis alphabet
-        [], # value for second analysis alphabet
-        '', # key for first vernacular alphabet
-        [], # value for first vernacular alphabet
-        '', # key for second vernacular alphabet
-        [], # value for second vernacular alphabet
+        None, # key for first analysis alphabet
+        None, # value for first analysis alphabet
+        None, # key for second analysis alphabet
+        None, # value for second analysis alphabet
+        None, # key for first vernacular alphabet
+        None, # value for first vernacular alphabet
+        None, # key for second vernacular alphabet
+        None, # value for second vernacular alphabet
         ]
 
         try:
@@ -172,11 +180,11 @@ class tasks(capability):
         ['classCount_text', 'int'],
         # ['lexEntry', 'int'],
         ['analysis1_code', 'varchar(80)'],
-        ['analysis1_characterInventory', 'text[]'],
+        ['analysis1_characterInventory', 'text'],
         ['analysis2_code', 'varchar(80)'],
-        ['analysis2_characterInventory', 'text[]'],
+        ['analysis2_characterInventory', 'text'],
         ['vernacular1_code', 'varchar(80)'],
-        ['vernacular1_characterInventory', 'text[]'],
+        ['vernacular1_characterInventory', 'text'],
         ['vernacular2_code', 'varchar(80)'],
-        ['vernacular2_characterInventory', 'text[]']
+        ['vernacular2_characterInventory', 'text']
         ]
