@@ -21,16 +21,19 @@ from importlib import import_module
 # modifiedDate      date -- Date of last commit
 # );
 
+
 def main():
-    # here, we make the list of elements. The first three added here are non-capabilites
-    # and MUST NOT be removed. Removing the element 'name' will even break the program entirely.
+    # Here, we make the list of elements. The first three added here are
+    # non-capabilites and MUST NOT be removed. Removing the element 'name' will
+    # break the program entirely.
     listOfElements = []
-    listOfElements.append(['name','varchar(80)'])
+    listOfElements.append(['name', 'varchar(80)'])
     listOfElements.append(['id', 'serial'])
-    listOfElements.append(['projectCode','varchar(80)'])
-    # using the list of capabilities, we import each capability and use its getColumns() function
-    # to add it to the list of elements.
-    # if the list contains a list, then we add in the metalist as if it were a column.
+    listOfElements.append(['projectCode', 'varchar(80)'])
+    # Using the list of capabilities, we import each capability and use its
+    # getColumns() function to add it to the list of elements.
+    # If the list contains a list, then we add in the metalist as if it were a
+    # column.
     # All other metalists in the list are added in the same way.
     listOfCapabilities = getListOfCapabilities()
     for capability in listOfCapabilities:
@@ -40,23 +43,26 @@ def main():
                 if len(element) % 2 == 0:
                     listOfElements.append(element)
                 else:
-                    print ( 'please insert a type for each element.' )
+                    print('please insert a type for each element.')
                     return
-        elif len( capabilityModule.tasks.getColumns() ) % 2 == 0:
-            listOfElements.append( capabilityModule.tasks.getColumns() )
+        elif len(capabilityModule.tasks.getColumns()) % 2 == 0:
+            listOfElements.append(capabilityModule.tasks.getColumns())
         else:
-            print ( 'please insert a type for each element.' )
+            print('please insert a type for each element.')
             return
-    # this element must be last, it tells the program if the file is done scanning
+    # this element must be last, it tells the program if the file is done
+    # scanning
     listOfElements.append(['scanDone', 'boolean'])
 
     # SQL string variables
     schema = ['-- create schemas\n',
-    'CREATE SCHEMA project;\n',
-    '-- set search path\n',
-    'SET search_path TO project,public;\n']
+              'CREATE SCHEMA project;\n',
+              '-- set search path\n',
+              'SET search_path TO project,public;\n'
+              ]
     tableStart = ['-- create tables\n',
-    'CREATE TABLE project.metadata (\n']
+                  'CREATE TABLE project.metadata (\n'
+                  ]
     tableEnd = ');\n'
 
     # write!
@@ -64,14 +70,16 @@ def main():
     sqlFile.writelines(schema)
     sqlFile.writelines(tableStart)
     for element in listOfElements:
+        # If it's the very last element
         if element == listOfElements[-1]:
-            sqlFile.write( element[0] + ' ' + element[1] + '\n')
+            sqlFile.write(element[0] + ' ' + element[1] + '\n')
         else:
-            sqlFile.write( element[0] + ' ' + element[1] + ',' + '\n')
+            sqlFile.write(element[0] + ' ' + element[1] + ',' + '\n')
     sqlFile.write(tableEnd)
     sqlFile.close()
 
     # end of main()
+
 
 if __name__ == "__main__":
     main()

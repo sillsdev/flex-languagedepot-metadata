@@ -3,20 +3,20 @@ import sys
 import traceback
 import os
 import glob
-import json # data type no.1
+import json  # data type no.1
 import psycopg2
 from importlib import import_module
 import subprocess
-from pipes import quote
+
 
 class Runner(object):
     """find the files in this directory and ones above this directory,
     including the mercurial files"""
 
     def __init__(self, config, dataPath):
-        # makes sure the data path is correctly formatted (last character must contain '/')
+        # Makes sure dataPath ends with a '/' character
         global rootProjectFolder
-        if (dataPath[len(dataPath)-1:] == "/"):
+        if (dataPath[-1] == "/"):
             rootProjectFolder = dataPath
         else:
             rootProjectFolder = dataPath + '/'
@@ -24,7 +24,6 @@ class Runner(object):
         self._checkCfgType(config)
 
         # end of init
-
 
     def _checkCfgType(self, config):
         # declare credential fields here
@@ -41,10 +40,12 @@ class Runner(object):
             parsedConfig['user']
             parsedConfig['password']
         except (ValueError):
-            print ( "{} is not valid json.".format(config) )
+            print("{} is not valid json.".format(config))
             return
         except (KeyError):
-            print ( "{} does not contain proper credentials. (must include 'host', 'dbname', 'user', and 'password')".format(config) )
+            print("{} does not contain proper credentials. "
+                  "(must include 'host', 'dbname', 'user', and 'password')"
+                  .format(config))
             return
         else:
             usrhost = parsedConfig['host']
@@ -52,14 +53,19 @@ class Runner(object):
             usrname = parsedConfig['user']
             usrpasswd = parsedConfig['password']
 
-
     def run(self):
         # checks to see if the credentials came through
-        if ( not "usrpasswd" in globals() or not "usrname" in globals() or not "databse" in globals() or not "usrhost" in globals() ):
-            print ('Not enough credentials.')
+        if (
+            "usrpasswd" not in globals() or
+            "usrname" not in globals() or
+            "databse" not in globals() or
+            "usrhost" not in globals()
+        ):
+            print('Not enough credentials.')
             return
         # now it connects to the database, to see if they're correct
-        conn_string = 'host=%s dbname=%s user=%s password=%s' % (usrhost, databse, usrname, usrpasswd)
+        conn_string = 'host={} dbname={} user={} password={}'.format(
+                      usrhost, databse, usrname, usrpasswd)
         try:
             conn = psycopg2.connect(conn_string)
         except Exception:
@@ -69,14 +75,15 @@ class Runner(object):
         # find all files/folders in root folder
         files = glob.glob(rootProjectFolder + '*')
         files.sort()
-        listOfProjects = [ f for f in files if os.path.isdir(f) ]
+        listOfProjects = [f for f in files if os.path.isdir(f)]
         numOfProjects = len(listOfProjects)
 
         for folder in listOfProjects:
             fldrIndex = listOfProjects.index(folder)
             # Analyzer needs to pass rootProjectFolder as a parameter
             # so that the directory can be cropped out of the name later
-            analyzer = Analyze(folder, rootProjectFolder, fldrIndex, numOfProjects)
+            analyzer = Analyze(
+                folder, rootProjectFolder, fldrIndex, numOfProjects)
             try:
                 analyzer.run(conn)
             except Exception:
@@ -89,28 +96,40 @@ class Runner(object):
     # end of Runner class
 
 
-
 class Analyze(object):
     """retrieve various valuable pieces of information"""
     def __init__(self, hgdir, parentDirs, current, totalNumber):
-        # to get the project name, we take the complete directory sans the parent directories
+        # To get the project name, remove the parent directories from the
+        # project's path to get just the directory name.
         self.name = hgdir[len(parentDirs):]
         self.hgdir = hgdir
-        print( '(%s/%s) Scanning %s' % (current+1, totalNumber, self.name), end='' )
+        print(
+            '(%s/%s) Scanning %s' % (current+1, totalNumber, self.name),
+            end='')
 
     def run(self, conn):
-        # check if the project is already entered into the database, otherwise continue as normal
+        # check if the project is already entered into the database, otherwise
+        # continue as normal
+        # Why? In what situation would it be scanned twice? XXX
         curs = conn.cursor()
-        curs.execute( "SELECT scanDone FROM project.metadata WHERE name = %s;", (self.name,) )
+        curs.execute(
+            "SELECT scanDone FROM project.metadata WHERE name = %s;",
+            (self.name,))
+
         entries = curs.fetchone()
-        if ( entries == (True,) ):
-            print ( '\nAlready scanned. Moving on...' )
+        if (entries == (True,)):
+            print('\nAlready scanned. Moving on...')
             return
         else:
             # insert name into database, this creates a row we can use later
-            curs.execute( "INSERT INTO project.metadata (name) VALUES (%s);", (self.name,) )
-            curs.execute( "UPDATE project.metadata SET projectCode = %s WHERE name = %s;",
-            (self.name, self.name) )
+            curs.execute(
+                "INSERT INTO project.metadata (name) VALUES (%s);",
+                (self.name,))
+
+            curs.execute(
+                "UPDATE project.metadata SET projectCode = %s "
+                "WHERE name = %s;",
+                (self.name, self.name))
             conn.commit()
 
             listOfCapabilities = getListOfCapabilities()
@@ -123,15 +142,17 @@ class Analyze(object):
                 result = capabilityModule.tasks.analyze(self.hgdir)
                 capabilityModule.tasks.updateDb(conn, self.name, result)
 
-            # make an if statement here checking if all the data is filled for every column
-            curs.execute( "UPDATE project.metadata SET scanDone = %s WHERE name = %s;", (True, self.name) )
+            # Set scanDone to True in the database
+            curs.execute(
+                "UPDATE project.metadata SET scanDone = %s WHERE name = %s;",
+                (True, self.name))
             conn.commit()
             print('Done!')
 
         # end of run()
 
-
     # end of Analyze class
+
 
 def getListOfCapabilities():
     # glob all classes in the capabilities folder
