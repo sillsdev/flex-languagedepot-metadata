@@ -45,7 +45,7 @@ run `createDb.sh`:
 ```
 $ ./createDb.sh
 ```
-This file can both create the database and remove the database if it's already been made.
+This file will create the database, removing it first if it already exists.
 
 ### Usage
 
@@ -71,5 +71,6 @@ $ psql languagedepot-metadata
 ```
 However, you can also export the data to a CSV file:
 ```
-=# \copy (SELECT * FROM project.metadata) TO '/your/data/goes/here.csv' WITH (FORMAT CSV);
+=# \copy (SELECT * FROM project.metadata) TO 'data.csv' CSV HEADER;
 ```
+Or just run `./saveAsCSV.sh` to export data to `export.csv`.
