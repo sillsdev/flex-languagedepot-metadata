@@ -16,10 +16,11 @@ A python script to collect FLEx metadata from a list of local project folders an
 
 ### Quickstart
 
-- run `src/getDependences.sh` to automate installing the above dependencies with apt-get
-- run `src/setupPostgresql.sh` to automate creating a role for the database we'll use
-- run `src/createDb.sh` to initialize the database
-- run `src/runAnalysis.py` to start analyzing the data
+- `cd src`
+- run `./getDependences.sh` to automate installing the above dependencies with apt-get
+- run `./setupPostgresql.sh` to automate creating a role for the database we'll use
+- run `./createDb.sh` to initialize the database
+- run `./runAnalysis.py` to start analyzing the data
 
 ### Detailed Setup
 
