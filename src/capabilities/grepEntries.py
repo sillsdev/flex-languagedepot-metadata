@@ -1,240 +1,132 @@
 from capabilities.capability import capability
-import subprocess # used for bash commands (when required), unix-only
-from pipes import quote # used to sanitize bash input when complex commands are required, unix-only
+
+# Used for bash commands (when required), unix-only
+import subprocess
+
+# used to sanitize bash input when complex commands are required, unix-only
+from pipes import quote
 import glob
+
+from enum import Enum
+from collections import OrderedDict
+
 
 class tasks(capability):
 
+    # Class
+    xml = Enum('SearchTypes', 'tag class_')
+
+    # Define what to search for, in which directories, and whether it is a
+    # class or an XML tag being searched for.
+    searchItems = OrderedDict([
+        ('Linguistics/Lexicon', [
+                ('LexEntry', xml.tag),
+                ('LexSense', xml.class_),
+                ('LexPronunciation', xml.class_),
+                ('LexExampleSentence', xml.class_),
+                ('LexReference', xml.tag),
+                ('LexEntryRef', xml.class_),
+                ('CmPicture', xml.class_)
+            ]
+         ),
+        ('Linguistics/Reversals', [
+                ('ReversalIndex', xml.tag),
+                ('ReversalIndexEntry', xml.tag)
+            ]
+         ),
+        ('Other/Books', [
+                ('ScrBook', xml.tag),
+                ('ScrSection', xml.class_),
+                ('ScrTextPara', xml.class_)
+            ]
+         ),
+        ('Linguistics/Inventory', [
+                ('WfiWordform', xml.tag),
+                ('WfiAnalysis', xml.tag),
+                ('WfiGloss', xml.tag),
+                ('WfiMorphBundle', xml.class_)
+            ],
+         ),
+        ('Linguistics/TextCorpus', [
+                ('StTxtPara', xml.class_),
+                ('TextTag', xml.tag)
+            ],
+         ),
+        ('Anthropology', [
+                ('RnGenericRec', xml.tag)
+            ],
+         ),
+        ('General', [
+                ('CmFile', xml.tag)
+            ],
+         ),
+        ('Linguistics/Discourse', [
+                ('ConstChartRow', xml.class_),
+                ('ConstChartTag', xml.class_),
+                ('DsChart', xml.tag)
+            ]
+         )
+    ])
+
     # various xml tags are grabbed with the grep command:
     def analyze(projectPath):
-        if(
-        not glob.glob('%s/Linguistics/Lexicon/*' % projectPath) or
-        not glob.glob('%s/Linguistics/Reversals/*' % projectPath) or
-        not glob.glob('%s/Other/Books/*' % projectPath) or
-        not glob.glob('%s/General/*' % projectPath) or
-        not glob.glob('%s/Linguistics/Inventory/*' % projectPath) or
-        not glob.glob('%s/Anthropology/*' % projectPath) or
-        not glob.glob('%s/Linguistics/TextCorpus/*' % projectPath) or
-        not glob.glob('%s/Linguistics/Discourse/*' % projectPath)
-        ):
-            return [None, None, None, None, None, None, None, None, None, None, None, None,
-            None, None, None, None, None, None, None, None, None, None, None, None]
-        else:
-            try:
-                # LexEntry
-                lexEntryCount = subprocess.check_output( 'grep -r "<LexEntry" \
-                %s/Linguistics/Lexicon/* | wc -l' \
-                % quote(projectPath), shell=True, stderr=subprocess.DEVNULL).decode('utf-8')
 
-                # LexSense
-                lexSenseCount = subprocess.check_output( 'grep -r \'class="LexSense"\' \
-                %s/Linguistics/Lexicon/* | wc -l' \
-                % quote(projectPath), shell=True, stderr=subprocess.DEVNULL).decode('utf-8')
+        dirs = tasks.searchItems.keys()
 
-                # LexPronunciation
-                lexPronunciationCount = subprocess.check_output( 'grep -r \'class="LexPronunciation"\' \
-                %s/Linguistics/Lexicon/* | wc -l' \
-                % quote(projectPath), shell=True, stderr=subprocess.DEVNULL).decode('utf-8')
+        # If any of the directories are empty return a list of None
+        for directory in dirs:
+            if not glob.glob(projectPath + '/' + directory + '/*'):
+                return [None] * len(tasks.classes)
 
-                # LexExampleSentence
-                lexExampleSentenceCount = subprocess.check_output( 'grep -r \'class="LexExampleSentence"\' \
-                %s/Linguistics/Lexicon/* | wc -l' \
-                % quote(projectPath), shell=True, stderr=subprocess.DEVNULL).decode('utf-8')
+        results = []
+        quote(projectPath)
 
-                # LexReference
-                lexReferenceCount = subprocess.check_output( 'grep -r "<LexReference" \
-                %s/Linguistics/Lexicon/* | wc -l' \
-                % quote(projectPath), shell=True, stderr=subprocess.DEVNULL).decode('utf-8')
+        for directory, searchItem in tasks.searchItems.items():
+            for tagOrClass in searchItem:
+                if tagOrClass[1] == tasks.xml.class_:
+                    searchFor = 'class=\"{}\"'.format(tagOrClass[0])
+                else:
+                    assert tagOrClass[1] == tasks.xml.tag
+                    searchFor = '</{}>'.format(tagOrClass[0])
 
-                # LexEntryRef
-                lexEntryRefCount = subprocess.check_output( 'grep -r \'class="LexEntryRef"\' \
-                %s/Linguistics/Lexicon/* | wc -l' \
-                % quote(projectPath), shell=True, stderr=subprocess.DEVNULL).decode('utf-8')
+                current_dir = '{}/{}/*'.format(projectPath, directory)
+                args = "grep -r '{}' {} | wc -l".format(
+                        searchFor, current_dir
+                    )
 
-                # ReversalIndex
-                reversalIndexCount = subprocess.check_output( 'grep -r "</ReversalIndex>" \
-                %s/Linguistics/Reversals/* | wc -l' \
-                % quote(projectPath), shell=True, stderr=subprocess.DEVNULL).decode('utf-8')
+                print('Running command ' + args)
 
-                # ReversalIndexEntry
-                reversalIndexEntryCount = subprocess.check_output( 'grep -r "<ReversalIndexEntry" \
-                %s/Linguistics/Reversals/* | wc -l' \
-                % quote(projectPath), shell=True, stderr=subprocess.DEVNULL).decode('utf-8')
+                result = subprocess.check_output(args, shell=True)
+                result = int(result.decode('utf-8'))
+                print('grep found ' + str(result))
+                results.append(result)
 
-                # ScrBook
-                scrBookCount = subprocess.check_output( 'grep -r "<ScrBook" \
-                %s/Other/Books/* | wc -l' \
-                % quote(projectPath), shell=True, stderr=subprocess.DEVNULL).decode('utf-8')
+        return results
 
-                # ScrSection
-                scrSectionCount = subprocess.check_output( 'grep -r \'class="ScrSection"\' \
-                %s/Other/Books/* | wc -l' \
-                % quote(projectPath), shell=True, stderr=subprocess.DEVNULL).decode('utf-8')
+    def updateDb(dbConn, py_name, values):
+        cur = dbConn.cursor()  # cursor to make changes
 
-                # ScrTextPara
-                scrTextParaCount = subprocess.check_output( 'grep -r \'class="ScrTextPara"\' \
-                %s/Other/Books/* | wc -l' \
-                % quote(projectPath), shell=True, stderr=subprocess.DEVNULL).decode('utf-8')
+        sql = ['classCount_{} = {}'.format(item[0], value)
+               for item, value in zip(tasks.getSearchItems(), values)]
+        sql = str.join(', ', sql)
 
-                # WfiWordform
-                wfiWordformCount = subprocess.check_output( 'grep -r "<WfiWordform" \
-                %s/Linguistics/Inventory/* | wc -l' \
-                % quote(projectPath), shell=True, stderr=subprocess.DEVNULL).decode('utf-8')
+        sql = "UPDATE project.metadata SET {} WHERE name = '{}';".format(
+                    sql, py_name
+               )
 
-                # WfiAnalysis
-                wfiAnalysisCount = subprocess.check_output( 'grep -r "<WfiAnalysis" \
-                %s/Linguistics/Inventory/* | wc -l' \
-                % quote(projectPath), shell=True, stderr=subprocess.DEVNULL).decode('utf-8')
+        cur.execute(sql)
+        dbConn.commit()
 
-                # WfiGloss
-                wfiGlossCount = subprocess.check_output( 'grep -r "<WfiGloss" \
-                %s/Linguistics/Inventory/* | wc -l' \
-                % quote(projectPath), shell=True, stderr=subprocess.DEVNULL).decode('utf-8')
+    def getColumns():
+        # TODO Refactor so the whole system uses tuples rather than arrays of
+        # length 2
+        return [['classCount_' + t[0], 'int'] for t in tasks.getSearchItems()]
 
-                # WfiMorphBundle
-                wfiMorphBundleCount = subprocess.check_output( 'grep -r \'class="WfiMorphBundle"\' \
-                %s/Linguistics/Inventory/* | wc -l' \
-                % quote(projectPath), shell=True, stderr=subprocess.DEVNULL).decode('utf-8')
+    def getSearchItems():
+        """Return a list of tuples in the form (search term, search type).
 
-                # Segment
-                # segmentCount = subprocess.check_output( 'grep -r "<Segment" \
-                # %s/Linguistics/Lexicon/* | wc -l' \
-                # % quote(projectPath), shell=True, stderr=subprocess.DEVNULL).decode('utf-8')
-
-                # Text
-                # textCount = subprocess.check_output( 'grep -r "<Text" \
-                # %s/Linguistics/Lexicon/* | wc -l' \
-                # % quote(projectPath), shell=True, stderr=subprocess.DEVNULL).decode('utf-8')
-
-                # StTxtPara
-                stTxtParaCount = subprocess.check_output( 'grep -r \'class="StTxtPara"\' \
-                %s/Linguistics/TextCorpus/* | wc -l' \
-                % quote(projectPath), shell=True, stderr=subprocess.DEVNULL).decode('utf-8')
-
-                # RnGenericRec
-                rnGenericRecCount = subprocess.check_output( 'grep -r "<RnGenericRec" \
-                %s/Anthropology/* | wc -l' \
-                % quote(projectPath), shell=True, stderr=subprocess.DEVNULL).decode('utf-8')
-
-                # CmFile
-                cmFileCount = subprocess.check_output( 'grep -r "<CmFile" \
-                %s/General/* | wc -l' \
-                % quote(projectPath), shell=True, stderr=subprocess.DEVNULL).decode('utf-8')
-
-                # CmPicture
-                cmPictureCount = subprocess.check_output( 'grep -r \'class="CmPicture"\' \
-                %s/Linguistics/Lexicon/* | wc -l' \
-                % quote(projectPath), shell=True, stderr=subprocess.DEVNULL).decode('utf-8')
-
-                # ConstChartRow
-                constChartRowCount = subprocess.check_output( 'grep -r \'class="ConstChartRow"\' \
-                %s/Linguistics/Discourse/* | wc -l' \
-                % quote(projectPath), shell=True, stderr=subprocess.DEVNULL).decode('utf-8')
-
-                # ConstChartTag
-                constChartTagCount = subprocess.check_output( 'grep -r \'class="ConstChartTag"\' \
-                %s/Linguistics/Discourse/* | wc -l' \
-                % quote(projectPath), shell=True, stderr=subprocess.DEVNULL).decode('utf-8')
-
-                # DsChart
-                dsChartCount = subprocess.check_output( 'grep -r "<DsChart" \
-                %s/Linguistics/Discourse/* | wc -l' \
-                % quote(projectPath), shell=True, stderr=subprocess.DEVNULL).decode('utf-8')
-
-                # TextTag
-                textTagCount = subprocess.check_output( 'grep -r "<TextTag" \
-                %s/Linguistics/TextCorpus/* | wc -l' \
-                % quote(projectPath), shell=True, stderr=subprocess.DEVNULL).decode('utf-8')
-
-            except(Exception):
-                print('Error!!! a command went wrong...')
-            else:
-                return [
-                int(lexEntryCount),
-                int(lexSenseCount),
-                int(lexPronunciationCount),
-                int(lexExampleSentenceCount),
-                int(lexReferenceCount),
-                int(lexEntryRefCount),
-                int(reversalIndexCount),
-                int(reversalIndexEntryCount),
-                int(scrBookCount),
-                int(scrSectionCount),
-                int(scrTextParaCount),
-                int(wfiWordformCount),
-                int(wfiAnalysisCount),
-                int(wfiGlossCount),
-                int(wfiMorphBundleCount),
-                # int(segmentCount),
-                int(stTxtParaCount),
-                int(rnGenericRecCount),
-                int(cmFileCount),
-                int(cmPictureCount),
-                int(constChartRowCount),
-                int(constChartTagCount),
-                int(dsChartCount),
-                int(textTagCount)
-                ]
-            #
-
-        # end of analyze()
-
-    def updateDb(dbConn, py_name, value):
-        cur = dbConn.cursor() # cursor to make changes
-        cur.execute( """UPDATE project.metadata SET
-        classCount_lexEntry = %s,
-        classCount_lexSense = %s,
-        classCount_lexPronunciation = %s,
-        classCount_lexExampleSentence = %s,
-        classCount_lexReference = %s,
-        classCount_lexEntryRef = %s,
-        classCount_reversalIndex = %s,
-        classCount_reversalIndexEntry = %s,
-        classCount_scrBook = %s,
-        classCount_scrSection = %s,
-        classCount_scrTextPara = %s,
-        classCount_wfiWordform = %s,
-        classCount_wfiAnalysis = %s,
-        classCount_wfiGloss = %s,
-        classCount_wfiMorphBundle = %s,
-        classCount_stTxtPara = %s,
-        classCount_rnGenericRec = %s,
-        classCount_cmFile = %s,
-        classCount_cmPicture = %s,
-        classCount_constChartRow = %s,
-        classCount_constChartTag = %s,
-        classCount_dsChart = %s,
-        classCount_textTag = %s
-        WHERE name = %s;""",
-        (value[0], value[1], value[2], value[3], value[4], value[5], value[6], value[7], value[8], value[9],
-        value[10], value[11], value[12], value[13], value[14], value[15], value[16], value[17], value[18],
-        value[19], value[20], value[21], value[22], py_name) )
-        dbConn.commit() # save changes to db
-
-    def getColumns(): # this is synonymous with the lists in updateDb() and analyze()'s return!
-        return [
-        ['classCount_lexEntry', 'int'],
-        ['classCount_lexSense', 'int'],
-        ['classCount_lexPronunciation', 'int'],
-        ['classCount_lexExampleSentence', 'int'],
-        ['classCount_lexReference', 'int'],
-        ['classCount_lexEntryRef', 'int'],
-        ['classCount_reversalIndex', 'int'],
-        ['classCount_reversalIndexEntry', 'int'],
-        ['classCount_scrBook', 'int'],
-        ['classCount_scrSection', 'int'],
-        ['classCount_scrTextPara', 'int'],
-        ['classCount_wfiWordform', 'int'],
-        ['classCount_wfiAnalysis', 'int'],
-        ['classCount_wfiGloss', 'int'],
-        ['classCount_wfiMorphBundle', 'int'],
-        # ['classCount_segment', 'int'],
-        ['classCount_stTxtPara', 'int'],
-        ['classCount_rnGenericRec', 'int'],
-        ['classCount_cmFile', 'int'],
-        ['classCount_cmPicture', 'int'],
-        ['classCount_constChartRow', 'int'],
-        ['classCount_constChartTag', 'int'],
-        ['classCount_dsChart', 'int'],
-        ['classCount_textTag', 'int']
-        ]
+        Type is either xml.tag or xml.class_
+        The search type should not be confused with the column type, which is
+        usually (or in this module, always) int.
+        """
+        return [t for k, value in tasks.searchItems.items() for t in value]
