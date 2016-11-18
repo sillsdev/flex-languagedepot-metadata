@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-import os,sys
+import sys
 from LanguageDepotAnalyze import Runner
 
 # config file is specified, then used for the program!
