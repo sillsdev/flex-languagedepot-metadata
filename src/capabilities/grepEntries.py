@@ -71,17 +71,17 @@ class tasks(capability):
     # various xml tags are grabbed with the grep command:
     def analyze(projectPath):
 
-        dirs = tasks.searchItems.keys()
-
-        # If any of the directories are empty return a list of None
-        for directory in dirs:
-            if not glob.glob(projectPath + '/' + directory + '/*'):
-                return [None] * len(tasks.classes)
-
         results = []
         quote(projectPath)
 
         for directory, searchItem in tasks.searchItems.items():
+            # Only search a directory if it exists
+            if not glob.glob(projectPath + '/' + directory + '/*'):
+                # Append None for each search term that we can't search for
+                results.extend([None] * len(searchItem[1]))
+                # Go to next search dir
+                continue
+
             for tagOrClass in searchItem:
                 if tagOrClass[1] == tasks.xml.class_:
                     searchFor = 'class=\"{}\"'.format(tagOrClass[0])
@@ -94,11 +94,8 @@ class tasks(capability):
                         searchFor, current_dir
                     )
 
-                print('Running command ' + args)
-
                 result = subprocess.check_output(args, shell=True)
                 result = int(result.decode('utf-8'))
-                print('grep found ' + str(result))
                 results.append(result)
 
         return results
