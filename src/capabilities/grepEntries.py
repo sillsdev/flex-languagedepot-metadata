@@ -103,6 +103,9 @@ class tasks(capability):
     def updateDb(dbConn, py_name, values):
         cur = dbConn.cursor()  # cursor to make changes
 
+        # Replace None values with 'NULL' for Postgres
+        values = ['NULL' if value is None else value for value in values]
+
         sql = ['classCount_{} = {}'.format(item[0], value)
                for item, value in zip(tasks.getSearchItems(), values)]
         sql = str.join(', ', sql)
