@@ -2,6 +2,8 @@ from capabilities.capability import capability
 import os
 import glob
 import xml.etree.ElementTree as ET
+from collections import OrderedDict
+
 
 class tasks(capability):
 
@@ -9,8 +11,8 @@ class tasks(capability):
     # finds each file in the folder, parses it, and looks for the tag however many times
     def analyze(projectPath):
         # analysis & vernacular writing systems
-        analysis = {}
-        vernacular = {}
+        analysis = OrderedDict()
+        vernacular = OrderedDict()
         if glob.glob('%s/General/LanguageProject.langproj' % projectPath):
             vtree = ET.parse('%s/General/LanguageProject.langproj' % projectPath)
             vroot = vtree.getroot()
