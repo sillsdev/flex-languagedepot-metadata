@@ -19,17 +19,20 @@ A python script to collect FLEx metadata from a list of local project folders an
 - Download the script with `git clone https://github.com/sillsdev/flex-languagedepot-metadata`
 - Run the script in `src/runAll.sh`
 
-You can specify an output file name if you wish: `runAll.sh output.csv`. The
-default file name is `export.csv` and will be in the directory where you ran the
-command.
+By default the script will run on the sample data and save the output to `export.csv`. To run on a different dataset pass the path to the directory containing the projects you want to analyze. For example:
+```
+src/runAll.sh path/to/directory/containing/flex/projects output_file.csv
+```
+Both parameters are optional, but you must specify the first if you want to specify the second.
 
 ### Longer setup
 
 - `cd src`
-- run `./installDependencies.sh` to automate installing the above dependencies with apt-get
-- run `./setupPostgresql.sh` to automate creating a role for the database we'll use
-- run `./createDb.sh` to initialize the database
-- run `./runAnalysis.py` to start analyzing the data
+- run `./installDependencies.sh` to automate installing the above dependencies with apt-get.
+- run `./setupPostgresql.sh` to automate creating a role for the database we'll use.
+- run `./createDb.sh` to initialize the database, or delete and recreate it.
+- run `./runAnalysis.py` to start analyzing the data. You can specify a path to the directory containing the projects you want to analyze.
+- run `./saveAsCSV.sh` to export the data from the database. You can specify a file name to save the data in.
 
 ### Detailed Setup
 

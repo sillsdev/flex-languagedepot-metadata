@@ -10,7 +10,7 @@ cd "$(dirname "$0")" || exit
 ./installDependencies.sh --quiet
 ./setupPostgresql.sh
 ./createDb.sh
-./runAnalysis.py
+./runAnalysis.py $1
 
 DIR=`pwd`
 
@@ -18,4 +18,4 @@ DIR=`pwd`
 
 cd $ORIGINAL_CWD || exit
 
-exec "$DIR/saveAsCSV.sh" $1
+exec "$DIR/saveAsCSV.sh" $2
