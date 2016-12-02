@@ -12,4 +12,4 @@ createdb languagedepot-metadata
 python3 createDb.py
 psql languagedepot-metadata < languagedepot-metadata.sql
 
-echo Finished
+echo Database created
