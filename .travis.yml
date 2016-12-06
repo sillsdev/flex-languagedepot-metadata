@@ -1,0 +1,17 @@
+language: python
+dist: trusty
+sudo: required
+python:
+  - "3.5"
+before_install:
+  - export USERNAME=$(whoami)
+install:
+  - src/installDependencies.sh
+  - pip install psycopg2
+# command to run tests
+script:
+  - tests/test.sh
+  - src/runAll.sh
+after_script:
+  - cat src/config.json
+  - cat export.csv
