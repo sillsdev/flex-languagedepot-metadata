@@ -7,10 +7,10 @@ ORIGINAL_CWD=`pwd`
 # cd to the directory of this script
 cd "$(dirname "$0")" || exit
 
-./installDependencies.sh --quiet
-./setupPostgresql.sh
-./createDb.sh
-./runAnalysis.py $1
+./installDependencies.sh --quiet || exit
+./setupPostgresql.sh || exit
+./createDb.sh || exit
+./runAnalysis.py $1 || exit
 
 DIR=`pwd`
 

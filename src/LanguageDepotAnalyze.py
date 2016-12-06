@@ -70,7 +70,7 @@ class Runner(object):
             conn = psycopg2.connect(conn_string)
         except Exception:
             print('Incorrect Credentials.')
-            return
+            raise Exception
 
         # find all files/folders in root folder
         files = glob.glob(rootProjectFolder + '*')
