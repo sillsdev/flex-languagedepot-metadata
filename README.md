@@ -1,4 +1,4 @@
-# flex-languagedepot-metadata
+# flex-languagedepot-metadata [![Build Status](https://travis-ci.org/sillsdev/flex-languagedepot-metadata.svg?branch=master)](https://travis-ci.org/sillsdev/flex-languagedepot-metadata)
 
 A python script to collect FLEx metadata from a list of local project folders and store the data in a relational database for further analysis and query
 
