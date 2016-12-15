@@ -3,8 +3,6 @@ dist: trusty
 sudo: required
 python:
   - "3.5"
-before_install:
-  - export USERNAME=$(whoami)
 install:
   - src/installDependencies.sh
   - pip install psycopg2
