@@ -43,13 +43,11 @@ def main():
                 if len(element) % 2 == 0:
                     listOfElements.append(element)
                 else:
-                    print('please insert a type for each element.')
-                    return
+                    raise ValueError('please insert a type for each element.')
         elif len(capabilityModule.tasks.getColumns()) % 2 == 0:
             listOfElements.append(capabilityModule.tasks.getColumns())
         else:
-            print('please insert a type for each element.')
-            return
+            raise ValueError('please insert a type for each element.')
     # this element must be last, it tells the program if the file is done
     # scanning
     listOfElements.append(['scanDone', 'boolean'])
