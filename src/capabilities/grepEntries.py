@@ -78,7 +78,7 @@ class tasks(capability):
             # Only search a directory if it exists
             if not glob.glob(projectPath + '/' + directory + '/*'):
                 # Append None for each search term that we can't search for
-                results.extend([None] * len(searchItem[1]))
+                results.extend([None] * len(searchItem))
                 # Go to next search dir
                 continue
 
