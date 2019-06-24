@@ -3,9 +3,10 @@ dist: xenial
 sudo: required
 python:
   - "3.5"
+before_install:
+  - sudo apt-get update
 install:
   - src/installDependencies.sh
-  - pip install psycopg2
 # command to run tests
 script:
   - tests/test.sh

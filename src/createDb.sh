@@ -1,4 +1,5 @@
 #!/bin/bash
+set -eux
 
 # cd to the directory of this script
 cd "$(dirname "$0")" || exit

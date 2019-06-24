@@ -1,4 +1,6 @@
 #!/bin/bash
+set -eux
+
 cd "$(dirname "$0")" || exit
 
 function createRole {
@@ -6,7 +8,7 @@ function createRole {
   echo "You may be prompted for the password for the $USER user."
   echo "As you type the password no output will be shown."
   echo
-  sudo -u postgres psql -c "CREATE ROLE $USER WITH LOGIN CREATEDB PASSWORD 'placeholder'"
+  sudo -i -u postgres psql -c "CREATE ROLE $USER WITH LOGIN CREATEDB PASSWORD 'placeholder'"
 }
 
 # If There is no Postgre role with the username, create it

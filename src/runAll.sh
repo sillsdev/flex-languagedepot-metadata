@@ -1,4 +1,5 @@
 #!/bin/bash
+set -eux
 
 # Run everything necessary to get an output file in one command
 

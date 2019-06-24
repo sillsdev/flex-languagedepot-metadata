@@ -1,4 +1,5 @@
 #!/bin/bash
+set -eu
 
 # Installs dependencies if they're not installed already. If the --quiet option
 # is given there will be no output if dependencies are already met.
