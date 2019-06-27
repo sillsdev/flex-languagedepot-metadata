@@ -75,7 +75,7 @@ class Runner(object):
         # find all files/folders in root folder
         files = glob.glob(rootProjectFolder + '*')
         files.sort()
-        listOfProjects = [f for f in files if os.path.isdir(f)]
+        listOfProjects = [f for f in files if os.path.isdir(f) and os.path.isfile(os.path.join(f, 'FLExProject.ModelVersion'))]
         numOfProjects = len(listOfProjects)
 
         for folder in listOfProjects:
