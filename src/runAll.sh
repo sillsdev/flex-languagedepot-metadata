@@ -1,6 +1,11 @@
 #!/bin/bash
 set -eux
 
+if [ "$#" -ne 2 ]; then
+    echo "Usage: ./runAll.sh <directory with projects to scan> <output CSV file>"
+    exit 1
+fi
+
 # Run everything necessary to get an output file in one command
 
 ORIGINAL_CWD=`pwd`
